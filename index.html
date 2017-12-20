@@ -284,7 +284,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://geniuslight.github.io/2017/12/20/登陆远程服务器桌面/">
+    <link itemprop="mainEntityOfPage" href="https://geniuslight.github.io/2017/12/20/建站记录/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="light">
@@ -303,7 +303,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/12/20/登陆远程服务器桌面/" itemprop="url">'登陆远程服务器桌面'</a></h1>
+                <a class="post-title-link" href="/2017/12/20/建站记录/" itemprop="url">建站记录</a></h1>
         
 
         <div class="post-meta">
@@ -315,7 +315,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-20T16:19:34+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-20T19:42:49+08:00">
                 2017-12-20
               </time>
             
@@ -338,8 +338,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/服务器运维/" itemprop="url" rel="index">
-                    <span itemprop="name">服务器运维</span>
+                  <a href="/categories/随笔/" itemprop="url" rel="index">
+                    <span itemprop="name">随笔</span>
                   </a>
                 </span>
 
@@ -355,7 +355,7 @@
 
           
           
-             <span id="/2017/12/20/登陆远程服务器桌面/" class="leancloud_visitors" data-flag-title="'登陆远程服务器桌面'">
+             <span id="/2017/12/20/建站记录/" class="leancloud_visitors" data-flag-title="建站记录">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -388,81 +388,7 @@
       
         
           
-            <h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><table>
-<thead>
-<tr>
-<th style="text-align:center">序号</th>
-<th style="text-align:center">方案</th>
-<th style="text-align:center">简单区别</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">方案一</td>
-<td style="text-align:center">Xmanager</td>
-<td style="text-align:center">1.VNC连接时及时突然中断（比如断网），不影响操作进行；2.不需要在服务器上装软件，需要在你的电脑上装相应软件，使用SSH协议；3.正版要钱</td>
-</tr>
-<tr>
-<td style="text-align:center">方案二</td>
-<td style="text-align:center">VNC(Virtual Network Computing)</td>
-<td style="text-align:center">1.本地操作突然中断，服务器端操作也中断；2.在服务器端装vncserver（有很多版本选择）,你的电脑装vncviewer客户端(有很多软件选择)；3.不要钱</td>
-</tr>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
-</tr>
-</tbody>
-</table>
-<h1 id="VCN安装和配置"><a href="#VCN安装和配置" class="headerlink" title="VCN安装和配置"></a>VCN安装和配置</h1><p>vncserver和vncviewr选择有很多，我选择采用<br><code>vnc4server + VNC Viewer</code></p>
-<ul>
-<li>在服务器安装操作系统：Ubuntu16.04 Desktop</li>
-<li>选择安装桌面和修改vnc相应配置，个人尝试安装了gnome和xface4</li>
-</ul>
-<h2 id="1-安装gnome"><a href="#1-安装gnome" class="headerlink" title="1.安装gnome"></a>1.安装gnome</h2><ul>
-<li>执行<code>apt-get install vnc4server</code>，安装vnc server</li>
-<li>执行<code>vncserver</code>，按照提示设置VNC访问时的密码</li>
-<li>执行<code>apt-get install gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal</code>，安装gnome窗口管理器</li>
-<li>需要修改.vnc/xstartup配置文件。修改为下面的样子：</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"></span><br><span class="line">exportXKL_XMODMAP_DISABLE=1</span><br><span class="line">unsetSESSION_MANAGER</span><br><span class="line">unsetDBUS_SESSION_BUS_ADDRESS</span><br><span class="line"></span><br><span class="line">gnome-panel &amp;</span><br><span class="line">gnome-settings-daemon &amp;</span><br><span class="line">metacity &amp;</span><br><span class="line">nautilus &amp;</span><br><span class="line">gnome-terminal &amp;</span><br><span class="line">vncconfig &amp;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>执行<code>apt-get install vnc4server</code>，安装vnc server</li>
-<li>执行<code>vncserver --geometry 1920×1080  :1</code>，再次启动vnc server，其中1920X1080是屏幕分辨率，可自行修改<br>thEast)</li>
-<li>远程运行vnc的客户端（如：VNC Viewer）: IP地址+VNC端口（如：192.168.1.188：1）</li>
-</ul>
-<p>效果如下（桌面崩溃了，网上找的效果图）：<br><img src="http://img.blog.csdn.net/20171127185425460?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2FuZ19zaGVuX3Rhbw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="崩溃的桌面"></p>
-<h2 id="2-安装xfce4"><a href="#2-安装xfce4" class="headerlink" title="2.安装xfce4"></a>2.安装xfce4</h2><ul>
-<li>执行<code>apt-get install vnc4server</code>，安装vnc server</li>
-<li>执行<code>vncserver</code>，按照提示设置VNC访问时的密码</li>
-<li>执行<code>sudo apt-get install xfce4</code>，安装xfce4桌面环境</li>
-<li>需要修改.vnc/xstartup配置文件。修改为下面的样子：</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"><span class="comment"># Uncomment the following two lines for normal desktop:</span></span><br><span class="line"><span class="comment"># unset SESSION_MANAGER</span></span><br><span class="line"><span class="comment"># exec /etc/X11/xinit/xinitrc</span></span><br><span class="line">[ -x /etc/vnc/xstartup ] &amp;&amp; <span class="built_in">exec</span> /etc/vnc/xstartup</span><br><span class="line">[ -r <span class="variable">$HOME</span>/.Xresources ] &amp;&amp; xrdb <span class="variable">$HOME</span>/.Xresources</span><br><span class="line">xsetroot -solid grey</span><br><span class="line">vncconfig -iconic &amp;</span><br><span class="line">x-terminal-emulator -geometry 80x24+10+10 -ls -title <span class="string">"<span class="variable">$VNCDESKTOP</span> Desktop"</span> &amp;</span><br><span class="line"><span class="comment">#x-window-manager &amp;</span></span><br><span class="line">sesion-manager &amp; xfdesktop &amp; xfce4-panel &amp;</span><br><span class="line">xfce4-menu-plugin &amp;</span><br><span class="line">xfsettingsd &amp;</span><br><span class="line">xfconfd &amp;</span><br><span class="line">xfwm4 &amp;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>执行<code>sudo update-alternatives --config x-terminal-emulator</code>，选择“/usr/bin/xterm”项或者“/usr/bin/xfce4-terminal.wrapper”，配置模拟终端,否则登录后无法启动终端</li>
-<li>执行<code>vncserver - -geometry 1920×1080  :1</code>，再次启动vnc server，其中1920X1080是屏幕分辨率，可自行修改</li>
-<li>远程运行vnc的客户端（如：VNC Viewer）: IP地址+VNC端口（如：192.168.1.188：1）</li>
-</ul>
-<p>效果如下：<br><img src="http://img.blog.csdn.net/20171127185748696?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2FuZ19zaGVuX3Rhbw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
-<h1 id="遇到问题"><a href="#遇到问题" class="headerlink" title="遇到问题"></a>遇到问题</h1><p>1安装gnome系统崩溃，再次登陆表现为：菜单无法显示，终端无法打开，新开用户可以重新打开终端，但是菜单任无法显示，所以采用xfce桌面。网上称vnc4server对gnome桌面支持有bug。</p>
-<p><code>推荐直接使用安装xfce4并且修改相应配置</code></p>
-<p>2 安装xfce后无法使用tab键在终端中自动补齐，原因是快捷键冲突。</p>
-<p>解决方法：</p>
-<ul>
-<li>菜单栏 → 设置 → 窗口设置 。打开窗口设置对话框<br><img src="http://img.blog.csdn.net/20171127190313823?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2FuZ19zaGVuX3Rhbw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></li>
-<li>在窗口管理器中选择快捷键选项卡（Key） → Switch window for same application</li>
-<li>将冲突快捷键清空，关闭窗口管理器</li>
-</ul>
-<p>参考：</p>
-<ul>
-<li><p><a href="https://zhuanlan.zhihu.com/p/23325822" target="_blank" rel="noopener">在ubuntu16.04.1-desktop(amd64)上设置VNC</a></p>
-</li>
-<li><p><a href="http://blog.csdn.net/xiji321/article/details/78579622" target="_blank" rel="noopener">ubuntu16.04 vncserver配置</a></p>
-</li>
-<li><p><a href="http://blog.csdn.net/xuezhisdc/article/details/48662435" target="_blank" rel="noopener">在VNC中Xfce4中Tab键失效的解决方法</a></p>
-<p>​</p>
-</li>
-</ul>
+            <h1 id="初衷"><a href="#初衷" class="headerlink" title="初衷"></a>初衷</h1><p>记录成长的点点滴滴，给自己更多的思考时间！</p>
 
           
         
@@ -715,6 +641,233 @@
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://geniuslight.github.io/2017/12/20/登陆远程服务器桌面/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="light">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="回忆积木小屋">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/20/登陆远程服务器桌面/" itemprop="url">'登陆远程服务器桌面'</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-20T16:19:34+08:00">
+                2017-12-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/服务器运维/" itemprop="url" rel="index">
+                    <span itemprop="name">服务器运维</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/12/20/登陆远程服务器桌面/" class="leancloud_visitors" data-flag-title="'登陆远程服务器桌面'">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><table>
+<thead>
+<tr>
+<th style="text-align:center">序号</th>
+<th style="text-align:center">方案</th>
+<th style="text-align:center">简单区别</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">方案一</td>
+<td style="text-align:center">Xmanager</td>
+<td style="text-align:center">1.VNC连接时及时突然中断（比如断网），不影响操作进行；2.不需要在服务器上装软件，需要在你的电脑上装相应软件，使用SSH协议；3.正版要钱</td>
+</tr>
+<tr>
+<td style="text-align:center">方案二</td>
+<td style="text-align:center">VNC(Virtual Network Computing)</td>
+<td style="text-align:center">1.本地操作突然中断，服务器端操作也中断；2.在服务器端装vncserver（有很多版本选择）,你的电脑装vncviewer客户端(有很多软件选择)；3.不要钱</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+</tbody>
+</table>
+<h1 id="VCN安装和配置"><a href="#VCN安装和配置" class="headerlink" title="VCN安装和配置"></a>VCN安装和配置</h1><p>vncserver和vncviewr选择有很多，我选择采用<br><code>vnc4server + VNC Viewer</code></p>
+<ul>
+<li>在服务器安装操作系统：Ubuntu16.04 Desktop</li>
+<li>选择安装桌面和修改vnc相应配置，个人尝试安装了gnome和xface4</li>
+</ul>
+<h2 id="1-安装gnome"><a href="#1-安装gnome" class="headerlink" title="1.安装gnome"></a>1.安装gnome</h2><ul>
+<li>执行<code>apt-get install vnc4server</code>，安装vnc server</li>
+<li>执行<code>vncserver</code>，按照提示设置VNC访问时的密码</li>
+<li>执行<code>apt-get install gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal</code>，安装gnome窗口管理器</li>
+<li>需要修改.vnc/xstartup配置文件。修改为下面的样子：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"></span><br><span class="line">exportXKL_XMODMAP_DISABLE=1</span><br><span class="line">unsetSESSION_MANAGER</span><br><span class="line">unsetDBUS_SESSION_BUS_ADDRESS</span><br><span class="line"></span><br><span class="line">gnome-panel &amp;</span><br><span class="line">gnome-settings-daemon &amp;</span><br><span class="line">metacity &amp;</span><br><span class="line">nautilus &amp;</span><br><span class="line">gnome-terminal &amp;</span><br><span class="line">vncconfig &amp;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>执行<code>apt-get install vnc4server</code>，安装vnc server</li>
+<li>执行<code>vncserver --geometry 1920×1080  :1</code>，再次启动vnc server，其中1920X1080是屏幕分辨率，可自行修改<br>thEast)</li>
+<li>远程运行vnc的客户端（如：VNC Viewer）: IP地址+VNC端口（如：192.168.1.188：1）</li>
+</ul>
+<p>效果如下（桌面崩溃了，网上找的效果图）：<br><img src="http://img.blog.csdn.net/20171127185425460?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2FuZ19zaGVuX3Rhbw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="崩溃的桌面"></p>
+<h2 id="2-安装xfce4"><a href="#2-安装xfce4" class="headerlink" title="2.安装xfce4"></a>2.安装xfce4</h2><ul>
+<li>执行<code>apt-get install vnc4server</code>，安装vnc server</li>
+<li>执行<code>vncserver</code>，按照提示设置VNC访问时的密码</li>
+<li>执行<code>sudo apt-get install xfce4</code>，安装xfce4桌面环境</li>
+<li>需要修改.vnc/xstartup配置文件。修改为下面的样子：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"><span class="comment"># Uncomment the following two lines for normal desktop:</span></span><br><span class="line"><span class="comment"># unset SESSION_MANAGER</span></span><br><span class="line"><span class="comment"># exec /etc/X11/xinit/xinitrc</span></span><br><span class="line">[ -x /etc/vnc/xstartup ] &amp;&amp; <span class="built_in">exec</span> /etc/vnc/xstartup</span><br><span class="line">[ -r <span class="variable">$HOME</span>/.Xresources ] &amp;&amp; xrdb <span class="variable">$HOME</span>/.Xresources</span><br><span class="line">xsetroot -solid grey</span><br><span class="line">vncconfig -iconic &amp;</span><br><span class="line">x-terminal-emulator -geometry 80x24+10+10 -ls -title <span class="string">"<span class="variable">$VNCDESKTOP</span> Desktop"</span> &amp;</span><br><span class="line"><span class="comment">#x-window-manager &amp;</span></span><br><span class="line">sesion-manager &amp; xfdesktop &amp; xfce4-panel &amp;</span><br><span class="line">xfce4-menu-plugin &amp;</span><br><span class="line">xfsettingsd &amp;</span><br><span class="line">xfconfd &amp;</span><br><span class="line">xfwm4 &amp;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>执行<code>sudo update-alternatives --config x-terminal-emulator</code>，选择“/usr/bin/xterm”项或者“/usr/bin/xfce4-terminal.wrapper”，配置模拟终端,否则登录后无法启动终端</li>
+<li>执行<code>vncserver - -geometry 1920×1080  :1</code>，再次启动vnc server，其中1920X1080是屏幕分辨率，可自行修改</li>
+<li>远程运行vnc的客户端（如：VNC Viewer）: IP地址+VNC端口（如：192.168.1.188：1）</li>
+</ul>
+<p>效果如下：<br><img src="http://img.blog.csdn.net/20171127185748696?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2FuZ19zaGVuX3Rhbw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<h1 id="遇到问题"><a href="#遇到问题" class="headerlink" title="遇到问题"></a>遇到问题</h1><p>1安装gnome系统崩溃，再次登陆表现为：菜单无法显示，终端无法打开，新开用户可以重新打开终端，但是菜单任无法显示，所以采用xfce桌面。网上称vnc4server对gnome桌面支持有bug。</p>
+<p><code>推荐直接使用安装xfce4并且修改相应配置</code></p>
+<p>2 安装xfce后无法使用tab键在终端中自动补齐，原因是快捷键冲突。</p>
+<p>解决方法：</p>
+<ul>
+<li>菜单栏 → 设置 → 窗口设置 。打开窗口设置对话框<br><img src="http://img.blog.csdn.net/20171127190313823?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2FuZ19zaGVuX3Rhbw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></li>
+<li>在窗口管理器中选择快捷键选项卡（Key） → Switch window for same application</li>
+<li>将冲突快捷键清空，关闭窗口管理器</li>
+</ul>
+<p>参考：</p>
+<ul>
+<li><p><a href="https://zhuanlan.zhihu.com/p/23325822" target="_blank" rel="noopener">在ubuntu16.04.1-desktop(amd64)上设置VNC</a></p>
+</li>
+<li><p><a href="http://blog.csdn.net/xiji321/article/details/78579622" target="_blank" rel="noopener">ubuntu16.04 vncserver配置</a></p>
+</li>
+<li><p><a href="http://blog.csdn.net/xuezhisdc/article/details/48662435" target="_blank" rel="noopener">在VNC中Xfce4中Tab键失效的解决方法</a></p>
+<p>​</p>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
@@ -765,7 +918,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -776,7 +929,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -787,7 +940,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
