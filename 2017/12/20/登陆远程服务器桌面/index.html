@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Linux,运维," />
 
 
 
@@ -81,20 +81,21 @@
 
 
 
-<meta name="description" content="title: ‘’’登陆远程服务器桌面’’’date: 2017-12-20 16:19:34categories: - 服务器运维 tags: - Linux - 运维 解决方案   序号 方案 简单区别     方案一 Xmanager 1.VNC连接时及时突然中断（比如断网），不影响操作进行；2.不需要在服务器上装软件，需要在你的电脑上装相应软件，使用SSH协议；3.正版要钱   方案二 V">
+<meta name="description" content="解决方案   序号 方案 简单区别     方案一 Xmanager 1.VNC连接时及时突然中断（比如断网），不影响操作进行；2.不需要在服务器上装软件，需要在你的电脑上装相应软件，使用SSH协议；3.正版要钱   方案二 VNC(Virtual Network Computing) 1.本地操作突然中断，服务器端操作也中断；2.在服务器端装vncserver（有很多版本选择）,你的电脑装vnc">
+<meta name="keywords" content="Linux,运维">
 <meta property="og:type" content="article">
-<meta property="og:title" content="回忆积木小屋">
+<meta property="og:title" content="&#39;登陆远程服务器桌面&#39;">
 <meta property="og:url" content="https://geniuslight.github.io/2017/12/20/登陆远程服务器桌面/index.html">
 <meta property="og:site_name" content="回忆积木小屋">
-<meta property="og:description" content="title: ‘’’登陆远程服务器桌面’’’date: 2017-12-20 16:19:34categories: - 服务器运维 tags: - Linux - 运维 解决方案   序号 方案 简单区别     方案一 Xmanager 1.VNC连接时及时突然中断（比如断网），不影响操作进行；2.不需要在服务器上装软件，需要在你的电脑上装相应软件，使用SSH协议；3.正版要钱   方案二 V">
+<meta property="og:description" content="解决方案   序号 方案 简单区别     方案一 Xmanager 1.VNC连接时及时突然中断（比如断网），不影响操作进行；2.不需要在服务器上装软件，需要在你的电脑上装相应软件，使用SSH协议；3.正版要钱   方案二 VNC(Virtual Network Computing) 1.本地操作突然中断，服务器端操作也中断；2.在服务器端装vncserver（有很多版本选择）,你的电脑装vnc">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://img.blog.csdn.net/20171127185425460?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2FuZ19zaGVuX3Rhbw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 <meta property="og:image" content="http://img.blog.csdn.net/20171127185748696?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2FuZ19zaGVuX3Rhbw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 <meta property="og:image" content="http://img.blog.csdn.net/20171127190313823?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2FuZ19zaGVuX3Rhbw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:updated_time" content="2017-12-20T08:29:00.052Z">
+<meta property="og:updated_time" content="2017-12-20T08:32:19.315Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="回忆积木小屋">
-<meta name="twitter:description" content="title: ‘’’登陆远程服务器桌面’’’date: 2017-12-20 16:19:34categories: - 服务器运维 tags: - Linux - 运维 解决方案   序号 方案 简单区别     方案一 Xmanager 1.VNC连接时及时突然中断（比如断网），不影响操作进行；2.不需要在服务器上装软件，需要在你的电脑上装相应软件，使用SSH协议；3.正版要钱   方案二 V">
+<meta name="twitter:title" content="&#39;登陆远程服务器桌面&#39;">
+<meta name="twitter:description" content="解决方案   序号 方案 简单区别     方案一 Xmanager 1.VNC连接时及时突然中断（比如断网），不影响操作进行；2.不需要在服务器上装软件，需要在你的电脑上装相应软件，使用SSH协议；3.正版要钱   方案二 VNC(Virtual Network Computing) 1.本地操作突然中断，服务器端操作也中断；2.在服务器端装vncserver（有很多版本选择）,你的电脑装vnc">
 <meta name="twitter:image" content="http://img.blog.csdn.net/20171127185425460?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2FuZ19zaGVuX3Rhbw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 
 
@@ -131,7 +132,7 @@
 
 
 
-  <title> | 回忆积木小屋</title>
+  <title>'登陆远程服务器桌面' | 回忆积木小屋</title>
   
 
 
@@ -196,6 +197,26 @@
         </li>
       
         
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
@@ -255,7 +276,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline"></h1>
+          <h1 class="post-title" itemprop="name headline">'登陆远程服务器桌面'</h1>
         
 
         <div class="post-meta">
@@ -267,7 +288,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-20T16:17:46+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-20T16:19:34+08:00">
                 2017-12-20
               </time>
             
@@ -277,6 +298,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/服务器运维/" itemprop="url" rel="index">
+                    <span itemprop="name">服务器运维</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -305,12 +348,7 @@
       
 
       
-        <p>title: ‘’’登陆远程服务器桌面’’’<br>date: 2017-12-20 16:19:34<br>categories:</p>
-<pre><code>- 服务器运维
-</code></pre><p>tags:</p>
-<pre><code>- Linux
-- 运维
-</code></pre><h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><table>
+        <h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><table>
 <thead>
 <tr>
 <th style="text-align:center">序号</th>
@@ -399,6 +437,14 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
+          
+            <a href="/tags/运维/" rel="tag"># 运维</a>
+          
+        </div>
       
 
       
