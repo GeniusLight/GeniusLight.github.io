@@ -268,9 +268,9 @@
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2017/12/20/登陆远程服务器桌面/" itemprop="url">
+            <a class="post-title-link" href="/2017/12/20/Linux系统换源/" itemprop="url">
               
-                <span itemprop="name">'登陆远程服务器桌面'</span>
+                <span itemprop="name">'Linux系统换源'</span>
               
             </a>
         
@@ -296,9 +296,9 @@
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2017/12/20/Linux系统换源/" itemprop="url">
+            <a class="post-title-link" href="/2017/12/20/登陆远程服务器桌面/" itemprop="url">
               
-                <span itemprop="name">'Linux系统换源'</span>
+                <span itemprop="name">'登陆远程服务器桌面'</span>
               
             </a>
         
@@ -611,6 +611,28 @@
 
 
 
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'alaM0IhCJJyL8ir0r5fuhc4V-gzGzoHsz',
+        appKey: 'Uxw6SrktC1nebEupO0EVYMgD',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
 
 
 
