@@ -1822,7 +1822,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ff1777;
+  background: #ec21ff;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2946,6 +2946,9 @@ hr {
   text-align: center;
   color: #4c618f;
 }
+.sidebar {
+  background: url("/images/sidebar-bk.jpg");
+}
 .site-author-name {
   margin: 48px 0 0;
   color: #090909;
@@ -2961,10 +2964,6 @@ hr {
 }
 .sidebar-inner {
   color: #649ab6;
-}
-.sidebar {
-  background: url("/images/sidebar-bk.jpg");
-  box-shadow: inset 2px 2px 40px #bdb2b2;
 }
 .sidebar a {
   color: #649ab6;
