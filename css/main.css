@@ -1822,7 +1822,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ec21ff;
+  background: #ff7fff;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2951,6 +2951,7 @@ hr {
 }
 .site-author-name {
   margin: 48px 0 0;
+  font-size: 14px;
   color: #090909;
   font-family: 'Comic Sans MS', sans-serif;
 }
