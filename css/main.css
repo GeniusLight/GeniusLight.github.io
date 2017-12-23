@@ -1822,7 +1822,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #1bd4ac;
+  background: #ff080e;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2935,7 +2935,7 @@ hr {
 .site-meta .site-title {
   font-size: 28px;
   font-family: 'Comic Sans MS', sans-serif;
-  color: #000;
+  color: #090909;
 }
 .footer {
   background: none;
@@ -2945,45 +2945,6 @@ hr {
   font-family: 'Comic Sans MS', sans-serif;
   text-align: center;
   color: #4c618f;
-}
-.site-author-name {
-  margin: 48px 0 0;
-  color: #090909;
-  font-family: 'Comic Sans MS', sans-serif;
-}
-.links-of-blogroll {
-  font-size: 14px;
-  margin-bottom: 42px;
-}
-.links-of-author {
-  margin-top: 30px;
-  margin-bottom: 58px;
-}
-.sidebar-inner {
-  color: #649ab6;
-}
-.sidebar {
-  box-shadow: inset 2px 2px 40px #bdb2b2;
-}
-.sidebar a {
-  color: #649ab6;
-  border-bottom-color: #649ab6;
-  border-bottom: none;
-}
-.sidebar a:hover {
-  color: #0c0b0b;
-}
-.site-state-item {
-  display: inline-block;
-  padding: 8px 28px;
-  border-left: 1px solid #649ab6;
-}
-.sidebar-nav .sidebar-nav-active {
-  color: #649ab6;
-  border-bottom-color: #649ab6;
-}
-.sidebar-nav li:hover {
-  color: #0c0b0b;
 }
 .sidebar-toggle {
   background: #649ab6;
