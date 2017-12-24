@@ -84,7 +84,7 @@
 <meta name="description" content="解决方案   序号 方案 简单区别     方案一 Xmanager 1.VNC连接时及时突然中断（比如断网），不影响操作进行；2.不需要在服务器上装软件，需要在你的电脑上装相应软件，使用SSH协议；3.正版要钱   方案二 VNC(Virtual Network Computing) 1.本地操作突然中断，服务器端操作也中断；2.在服务器端装vncserver（有很多版本选择）,你的电脑装vnc">
 <meta name="keywords" content="Linux,运维">
 <meta property="og:type" content="article">
-<meta property="og:title" content="&#39;登陆远程服务器桌面&#39;">
+<meta property="og:title" content="登陆远程服务器桌面">
 <meta property="og:url" content="https://geniuslight.github.io/2017/12/20/登陆远程服务器桌面/index.html">
 <meta property="og:site_name" content="回忆积木小屋">
 <meta property="og:description" content="解决方案   序号 方案 简单区别     方案一 Xmanager 1.VNC连接时及时突然中断（比如断网），不影响操作进行；2.不需要在服务器上装软件，需要在你的电脑上装相应软件，使用SSH协议；3.正版要钱   方案二 VNC(Virtual Network Computing) 1.本地操作突然中断，服务器端操作也中断；2.在服务器端装vncserver（有很多版本选择）,你的电脑装vnc">
@@ -92,9 +92,9 @@
 <meta property="og:image" content="http://img.blog.csdn.net/20171127185425460?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2FuZ19zaGVuX3Rhbw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 <meta property="og:image" content="http://img.blog.csdn.net/20171127185748696?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2FuZ19zaGVuX3Rhbw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 <meta property="og:image" content="http://img.blog.csdn.net/20171127190313823?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2FuZ19zaGVuX3Rhbw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:updated_time" content="2017-12-20T08:38:27.193Z">
+<meta property="og:updated_time" content="2017-12-24T15:17:59.981Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="&#39;登陆远程服务器桌面&#39;">
+<meta name="twitter:title" content="登陆远程服务器桌面">
 <meta name="twitter:description" content="解决方案   序号 方案 简单区别     方案一 Xmanager 1.VNC连接时及时突然中断（比如断网），不影响操作进行；2.不需要在服务器上装软件，需要在你的电脑上装相应软件，使用SSH协议；3.正版要钱   方案二 VNC(Virtual Network Computing) 1.本地操作突然中断，服务器端操作也中断；2.在服务器端装vncserver（有很多版本选择）,你的电脑装vnc">
 <meta name="twitter:image" content="http://img.blog.csdn.net/20171127185425460?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2FuZ19zaGVuX3Rhbw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 
@@ -132,7 +132,7 @@
 
 
 
-  <title>'登陆远程服务器桌面' | 回忆积木小屋</title>
+  <title>登陆远程服务器桌面 | 回忆积木小屋</title>
   
 
 
@@ -306,7 +306,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">'登陆远程服务器桌面'</h1>
+          <h1 class="post-title" itemprop="name headline">登陆远程服务器桌面</h1>
         
 
         <div class="post-meta">
@@ -358,7 +358,7 @@
 
           
           
-             <span id="/2017/12/20/登陆远程服务器桌面/" class="leancloud_visitors" data-flag-title="'登陆远程服务器桌面'">
+             <span id="/2017/12/20/登陆远程服务器桌面/" class="leancloud_visitors" data-flag-title="登陆远程服务器桌面">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -425,7 +425,7 @@
 <li>执行<code>apt-get install gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal</code>，安装gnome窗口管理器</li>
 <li>需要修改.vnc/xstartup配置文件。修改为下面的样子：</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"></span><br><span class="line">exportXKL_XMODMAP_DISABLE=1</span><br><span class="line">unsetSESSION_MANAGER</span><br><span class="line">unsetDBUS_SESSION_BUS_ADDRESS</span><br><span class="line"></span><br><span class="line">gnome-panel &amp;</span><br><span class="line">gnome-settings-daemon &amp;</span><br><span class="line">metacity &amp;</span><br><span class="line">nautilus &amp;</span><br><span class="line">gnome-terminal &amp;</span><br><span class="line">vncconfig &amp;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> XKL_XMODMAP_DISABLE=1</span><br><span class="line"><span class="built_in">unset</span> SESSION_MANAGER</span><br><span class="line"><span class="built_in">unset</span> DBUS_SESSION_BUS_ADDRESS</span><br><span class="line"></span><br><span class="line">gnome-panel &amp;</span><br><span class="line">gnome-settings-daemon &amp;</span><br><span class="line">metacity &amp;</span><br><span class="line">nautilus &amp;</span><br><span class="line">gnome-terminal &amp;</span><br><span class="line">vncconfig &amp;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>执行<code>apt-get install vnc4server</code>，安装vnc server</li>
 <li>执行<code>vncserver --geometry 1920×1080  :1</code>，再次启动vnc server，其中1920X1080是屏幕分辨率，可自行修改<br>thEast)</li>
@@ -502,8 +502,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/12/20/Linux系统换源/" rel="prev" title="'Linux系统换源'">
-                'Linux系统换源' <i class="fa fa-chevron-right"></i>
+              <a href="/2017/12/20/Linux系统换源/" rel="prev" title="Linux系统换源">
+                Linux系统换源 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
