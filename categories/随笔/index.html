@@ -16,6 +16,8 @@
     <title>Categories: 随笔 | 回忆积木小屋 | 多一点时间多一点爱</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
+    <meta name="theme-color" content="#3F51B5">
+    
     
     <meta name="keywords" content="">
     <meta name="description" content="多一点时间多一点爱">
@@ -31,8 +33,8 @@
     
         <link rel="alternate" type="application/atom+xml" title="回忆积木小屋" href="/atom.xml">
     
-    <link rel="shortcut icon" href="/">
-    <link rel="stylesheet" href="/css/style.css?v=1.7.1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
     <script>window.lazyScripts=[]</script>
 
     <!-- custom head -->
@@ -48,19 +50,68 @@
     <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
         <i class="icon icon-lg icon-close"></i>
     </a>
-    <div class="brand-wrap" style="background-image:url(/)">
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
       <div class="brand">
         <a href="/" class="avatar waves-effect waves-circle waves-light">
-          <img src="/images/avatar.jpg">
+          <img src="/img/avatar.jpg">
         </a>
         <hgroup class="introduce">
           <h5 class="nickname">light</h5>
-          <a href="mailto:undefined" class="mail">
+          <a href="mailto:18362927193@163.com" title="18362927193@163.com" class="mail">18362927193@163.com</a>
         </hgroup>
       </div>
     </div>
     <div class="scroll-wrap flex-col">
       <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect active">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/essay"  >
+                <i class="icon icon-lg icon-pencil"></i>
+                随笔
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/yscoder" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
         
       </ul>
     </div>
@@ -73,7 +124,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">undefined: 随笔</div>
+        <div class="flex-col header-title ellipsis">Categories: 随笔</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -86,12 +137,16 @@
         </div>
         
         
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
     </div>
 </header>
 <header class="content-header categories-header">
 
     <div class="container fade-scale">
-        <h1 class="title">undefined: 随笔</h1>
+        <h1 class="title">Categories: 随笔</h1>
         <h5 class="subtitle">
             
         </h5>
@@ -104,11 +159,11 @@
             ">All</a>
         
 
-            <a href="/categories/服务器运维/" style="-webkit-order:0;order:0" class="tags-list-item waves-effect waves-button waves-light">服务器运维</a>
+            <a href="/categories/随笔/" style="-webkit-order:0;order:0" class="tags-list-item waves-effect waves-button waves-light active">随笔</a>
 
         
 
-            <a href="/categories/随笔/" style="-webkit-order:1;order:1" class="tags-list-item waves-effect waves-button waves-light active">随笔</a>
+            <a href="/categories/服务器运维/" style="-webkit-order:1;order:1" class="tags-list-item waves-effect waves-button waves-light">服务器运维</a>
 
         
     </nav>
@@ -178,7 +233,7 @@
         </p>
     </div>
     <div class="bottom">
-        <p><span>light &copy; 2018</span>
+        <p><span>light &copy; 2017 - 2018</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
@@ -192,14 +247,60 @@
 <a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
 
 
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://geniuslight.github.io/categories/随笔/&title=回忆积木小屋&pic=https://geniuslight.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://geniuslight.github.io/categories/随笔/&title=回忆积木小屋&source=多一点时间多一点爱" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://geniuslight.github.io/categories/随笔/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=回忆积木小屋&url=https://geniuslight.github.io/categories/随笔/&via=https://geniuslight.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://geniuslight.github.io/categories/随笔/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACIklEQVR42u3aQY7CMBAEQP7/6ay0JySWqHsMaHHKJxSFxJVDy+Px7RaP43fc/76/8njP+ZXzJzxef9nAwMD4WsZxOp694PzKOSnnJXPDwMC4DiMP2Rw8i9dz8NPrGBgYGOU967GLgYGBsc5ol5LnVScGBgZGwkim1S4Zk224tjB+QS2OgYHxhYxZY+Azv9/e38DAwPj3jKMcyRPyN85C9o83YmBgbM1I2oezCbVPa++JVrgYGBgbMdp1V7uYe1V5PGNjYGDswZgtAdsGZBvE9efDwMDYmpEfj6jbiuVCcFbKYmBg7M2YHdvKp55H8OyQR/E9MDAwNmLMis9kMdcevygwGBgYWzParfZ26vnRjTx8o1ocAwNjO0ZSNH4G1m72YWBgXI2xUpq2wdr+qwhcDAyM7RhtpOaNzBmsXTJiYGBch7EyxfXYbQ9kPA1cDAyMCzBmTcQkEPNjZ3mLAgMD45qM9a2xZLMsCtA24jEwMLZmzB60UuLOPkoU0xgYGJsy8oNf6w3OdmmY/BcDA+NqjDYK23K03UrLj1xgYGDszchvmk1uNt2lQx4YGBjbMY5ytN8medr5lajAxsDA2JrRhl2R3yVp1irAwMC4DqONxdkRjSRe2+XmUrpjYGB8ISOfVrJMnDUb2ujHwMDAWCksZ5E6aw9gYGBgzA5vrWzDDeeDgYFxAcbK9n0UiO1SrwVjYGBszZiVjrM4fkfLEwMDY2vGD0TeHfMqqnsYAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
     <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
 <script>
-var BLOG = { ROOT: '/', SHARE: , REWARD: false };
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
 
 
 </script>
 
-<script src="/js/main.min.js?v=1.7.1"></script>
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
 
 
 <div class="search-panel" id="search-panel">
@@ -219,14 +320,52 @@ var BLOG = { ROOT: '/', SHARE: , REWARD: false };
 </li>
 </template>
 
-<script src="/js/search.min.js?v=1.7.1" async></script>
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
 
 
 
 
 
 
-
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
 
 
 

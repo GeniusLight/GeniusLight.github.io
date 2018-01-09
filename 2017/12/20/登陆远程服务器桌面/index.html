@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>登陆远程服务器桌面 | 回忆积木小屋 | 多一点时间多一点爱</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Linux,运维">
+    <meta name="description" content="解决方案   序号 方案 简单区别     方案一 Xmanager 1.VNC连接时及时突然中断（比如断网），不影响操作进行；2.不需要在服务器上装软件，需要在你的电脑上装相应软件，使用SSH协议；3.正版要钱   方案二 VNC(Virtual Network Computing) 1.本地操作突然中断，服务器端操作也中断；2.在服务器端装vncserver（有很多版本选择）,你的电脑装vnc">
+<meta name="keywords" content="Linux,运维">
+<meta property="og:type" content="article">
+<meta property="og:title" content="登陆远程服务器桌面">
+<meta property="og:url" content="https://geniuslight.github.io/2017/12/20/登陆远程服务器桌面/index.html">
+<meta property="og:site_name" content="回忆积木小屋">
+<meta property="og:description" content="解决方案   序号 方案 简单区别     方案一 Xmanager 1.VNC连接时及时突然中断（比如断网），不影响操作进行；2.不需要在服务器上装软件，需要在你的电脑上装相应软件，使用SSH协议；3.正版要钱   方案二 VNC(Virtual Network Computing) 1.本地操作突然中断，服务器端操作也中断；2.在服务器端装vncserver（有很多版本选择）,你的电脑装vnc">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://img.blog.csdn.net/20171127185425460?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2FuZ19zaGVuX3Rhbw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20171127185748696?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2FuZ19zaGVuX3Rhbw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20171127190313823?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2FuZ19zaGVuX3Rhbw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:updated_time" content="2017-12-24T15:17:59.981Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="登陆远程服务器桌面">
+<meta name="twitter:description" content="解决方案   序号 方案 简单区别     方案一 Xmanager 1.VNC连接时及时突然中断（比如断网），不影响操作进行；2.不需要在服务器上装软件，需要在你的电脑上装相应软件，使用SSH协议；3.正版要钱   方案二 VNC(Virtual Network Computing) 1.本地操作突然中断，服务器端操作也中断；2.在服务器端装vncserver（有很多版本选择）,你的电脑装vnc">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20171127185425460?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2FuZ19zaGVuX3Rhbw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+    
+        <link rel="alternate" type="application/atom+xml" title="回忆积木小屋" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">light</h5>
+          <a href="mailto:18362927193@163.com" title="18362927193@163.com" class="mail">18362927193@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/essay"  >
+                <i class="icon icon-lg icon-pencil"></i>
+                随笔
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/yscoder" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">登陆远程服务器桌面</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">登陆远程服务器桌面</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-12-20T08:19:34.000Z" itemprop="datePublished" class="page-time">
+  2017-12-20
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/服务器运维/">服务器运维</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#解决方案"><span class="post-toc-number">1.</span> <span class="post-toc-text"><a href="#&#x89E3;&#x51B3;&#x65B9;&#x6848;" class="headerlink" title="&#x89E3;&#x51B3;&#x65B9;&#x6848;"></a>&#x89E3;&#x51B3;&#x65B9;&#x6848;</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#VCN安装和配置"><span class="post-toc-number">2.</span> <span class="post-toc-text"><a href="#VCN&#x5B89;&#x88C5;&#x548C;&#x914D;&#x7F6E;" class="headerlink" title="VCN&#x5B89;&#x88C5;&#x548C;&#x914D;&#x7F6E;"></a>VCN&#x5B89;&#x88C5;&#x548C;&#x914D;&#x7F6E;</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-安装gnome"><span class="post-toc-number">2.1.</span> <span class="post-toc-text"><a href="#1-&#x5B89;&#x88C5;gnome" class="headerlink" title="1.&#x5B89;&#x88C5;gnome"></a>1.&#x5B89;&#x88C5;gnome</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-安装xfce4"><span class="post-toc-number">2.2.</span> <span class="post-toc-text"><a href="#2-&#x5B89;&#x88C5;xfce4" class="headerlink" title="2.&#x5B89;&#x88C5;xfce4"></a>2.&#x5B89;&#x88C5;xfce4</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#遇到问题"><span class="post-toc-number">3.</span> <span class="post-toc-text"><a href="#&#x9047;&#x5230;&#x95EE;&#x9898;" class="headerlink" title="&#x9047;&#x5230;&#x95EE;&#x9898;"></a>&#x9047;&#x5230;&#x95EE;&#x9898;</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-登陆远程服务器桌面"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">登陆远程服务器桌面</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-12-20 16:19:34" datetime="2017-12-20T08:19:34.000Z"  itemprop="datePublished">2017-12-20</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/服务器运维/">服务器运维</a></li></ul>
+
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><table>
+<thead>
+<tr>
+<th style="text-align:center">序号</th>
+<th style="text-align:center">方案</th>
+<th style="text-align:center">简单区别</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">方案一</td>
+<td style="text-align:center">Xmanager</td>
+<td style="text-align:center">1.VNC连接时及时突然中断（比如断网），不影响操作进行；2.不需要在服务器上装软件，需要在你的电脑上装相应软件，使用SSH协议；3.正版要钱</td>
+</tr>
+<tr>
+<td style="text-align:center">方案二</td>
+<td style="text-align:center">VNC(Virtual Network Computing)</td>
+<td style="text-align:center">1.本地操作突然中断，服务器端操作也中断；2.在服务器端装vncserver（有很多版本选择）,你的电脑装vncviewer客户端(有很多软件选择)；3.不要钱</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+</tbody>
+</table>
+<h1 id="VCN安装和配置"><a href="#VCN安装和配置" class="headerlink" title="VCN安装和配置"></a>VCN安装和配置</h1><p>vncserver和vncviewr选择有很多，我选择采用<br><code>vnc4server + VNC Viewer</code></p>
+<ul>
+<li>在服务器安装操作系统：Ubuntu16.04 Desktop</li>
+<li>选择安装桌面和修改vnc相应配置，个人尝试安装了gnome和xface4</li>
+</ul>
+<h2 id="1-安装gnome"><a href="#1-安装gnome" class="headerlink" title="1.安装gnome"></a>1.安装gnome</h2><ul>
+<li>执行<code>apt-get install vnc4server</code>，安装vnc server</li>
+<li>执行<code>vncserver</code>，按照提示设置VNC访问时的密码</li>
+<li>执行<code>apt-get install gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal</code>，安装gnome窗口管理器</li>
+<li>需要修改.vnc/xstartup配置文件。修改为下面的样子：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> XKL_XMODMAP_DISABLE=1</span><br><span class="line"><span class="built_in">unset</span> SESSION_MANAGER</span><br><span class="line"><span class="built_in">unset</span> DBUS_SESSION_BUS_ADDRESS</span><br><span class="line"></span><br><span class="line">gnome-panel &amp;</span><br><span class="line">gnome-settings-daemon &amp;</span><br><span class="line">metacity &amp;</span><br><span class="line">nautilus &amp;</span><br><span class="line">gnome-terminal &amp;</span><br><span class="line">vncconfig &amp;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>执行<code>apt-get install vnc4server</code>，安装vnc server</li>
+<li>执行<code>vncserver --geometry 1920×1080  :1</code>，再次启动vnc server，其中1920X1080是屏幕分辨率，可自行修改<br>thEast)</li>
+<li>远程运行vnc的客户端（如：VNC Viewer）: IP地址+VNC端口（如：192.168.1.188：1）</li>
+</ul>
+<p>效果如下（桌面崩溃了，网上找的效果图）：<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20171127185425460?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2FuZ19zaGVuX3Rhbw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="崩溃的桌面" title="">
+                </div>
+                <div class="image-caption">崩溃的桌面</div>
+            </figure></p>
+<h2 id="2-安装xfce4"><a href="#2-安装xfce4" class="headerlink" title="2.安装xfce4"></a>2.安装xfce4</h2><ul>
+<li>执行<code>apt-get install vnc4server</code>，安装vnc server</li>
+<li>执行<code>vncserver</code>，按照提示设置VNC访问时的密码</li>
+<li>执行<code>sudo apt-get install xfce4</code>，安装xfce4桌面环境</li>
+<li>需要修改.vnc/xstartup配置文件。修改为下面的样子：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"><span class="comment"># Uncomment the following two lines for normal desktop:</span></span><br><span class="line"><span class="comment"># unset SESSION_MANAGER</span></span><br><span class="line"><span class="comment"># exec /etc/X11/xinit/xinitrc</span></span><br><span class="line">[ -x /etc/vnc/xstartup ] &amp;&amp; <span class="built_in">exec</span> /etc/vnc/xstartup</span><br><span class="line">[ -r <span class="variable">$HOME</span>/.Xresources ] &amp;&amp; xrdb <span class="variable">$HOME</span>/.Xresources</span><br><span class="line">xsetroot -solid grey</span><br><span class="line">vncconfig -iconic &amp;</span><br><span class="line">x-terminal-emulator -geometry 80x24+10+10 -ls -title <span class="string">"<span class="variable">$VNCDESKTOP</span> Desktop"</span> &amp;</span><br><span class="line"><span class="comment">#x-window-manager &amp;</span></span><br><span class="line">sesion-manager &amp; xfdesktop &amp; xfce4-panel &amp;</span><br><span class="line">xfce4-menu-plugin &amp;</span><br><span class="line">xfsettingsd &amp;</span><br><span class="line">xfconfd &amp;</span><br><span class="line">xfwm4 &amp;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>执行<code>sudo update-alternatives --config x-terminal-emulator</code>，选择“/usr/bin/xterm”项或者“/usr/bin/xfce4-terminal.wrapper”，配置模拟终端,否则登录后无法启动终端</li>
+<li>执行<code>vncserver - -geometry 1920×1080  :1</code>，再次启动vnc server，其中1920X1080是屏幕分辨率，可自行修改</li>
+<li>远程运行vnc的客户端（如：VNC Viewer）: IP地址+VNC端口（如：192.168.1.188：1）</li>
+</ul>
+<p>效果如下：<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20171127185748696?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2FuZ19zaGVuX3Rhbw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述" title="">
+                </div>
+                <div class="image-caption">这里写图片描述</div>
+            </figure></p>
+<h1 id="遇到问题"><a href="#遇到问题" class="headerlink" title="遇到问题"></a>遇到问题</h1><p>1安装gnome系统崩溃，再次登陆表现为：菜单无法显示，终端无法打开，新开用户可以重新打开终端，但是菜单任无法显示，所以采用xfce桌面。网上称vnc4server对gnome桌面支持有bug。</p>
+<p><code>推荐直接使用安装xfce4并且修改相应配置</code></p>
+<p>2 安装xfce后无法使用tab键在终端中自动补齐，原因是快捷键冲突。</p>
+<p>解决方法：</p>
+<ul>
+<li>菜单栏 → 设置 → 窗口设置 。打开窗口设置对话框<br><img src="http://img.blog.csdn.net/20171127190313823?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2FuZ19zaGVuX3Rhbw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></li>
+<li>在窗口管理器中选择快捷键选项卡（Key） → Switch window for same application</li>
+<li>将冲突快捷键清空，关闭窗口管理器</li>
+</ul>
+<p>参考：</p>
+<ul>
+<li><p><a href="https://zhuanlan.zhihu.com/p/23325822" target="_blank" rel="noopener">在ubuntu16.04.1-desktop(amd64)上设置VNC</a></p>
+</li>
+<li><p><a href="http://blog.csdn.net/xiji321/article/details/78579622" target="_blank" rel="noopener">ubuntu16.04 vncserver配置</a></p>
+</li>
+<li><p><a href="http://blog.csdn.net/xuezhisdc/article/details/48662435" target="_blank" rel="noopener">在VNC中Xfce4中Tab键失效的解决方法</a></p>
+<p>​</p>
+</li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2017-12-24T15:17:59.981Z" itemprop="dateUpdated">2017-12-24 23:17:59</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/12/20/登陆远程服务器桌面/" target="_blank" rel="external">https://geniuslight.github.io/2017/12/20/登陆远程服务器桌面/</a>
+        
+    </div>
+    <footer>
+        <a href="https://geniuslight.github.io">
+            <img src="/img/avatar.jpg" alt="light">
+            light
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/运维/">运维</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://geniuslight.github.io/2017/12/20/登陆远程服务器桌面/&title=《登陆远程服务器桌面》 — 回忆积木小屋&pic=https://geniuslight.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://geniuslight.github.io/2017/12/20/登陆远程服务器桌面/&title=《登陆远程服务器桌面》 — 回忆积木小屋&source=多一点时间多一点爱" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://geniuslight.github.io/2017/12/20/登陆远程服务器桌面/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《登陆远程服务器桌面》 — 回忆积木小屋&url=https://geniuslight.github.io/2017/12/20/登陆远程服务器桌面/&via=https://geniuslight.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://geniuslight.github.io/2017/12/20/登陆远程服务器桌面/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/12/20/Linux系统换源/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Linux系统换源</h4>
+      </a>
+    </div>
+  
+
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>light &copy; 2017 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://geniuslight.github.io/2017/12/20/登陆远程服务器桌面/&title=《登陆远程服务器桌面》 — 回忆积木小屋&pic=https://geniuslight.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://geniuslight.github.io/2017/12/20/登陆远程服务器桌面/&title=《登陆远程服务器桌面》 — 回忆积木小屋&source=多一点时间多一点爱" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://geniuslight.github.io/2017/12/20/登陆远程服务器桌面/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《登陆远程服务器桌面》 — 回忆积木小屋&url=https://geniuslight.github.io/2017/12/20/登陆远程服务器桌面/&via=https://geniuslight.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://geniuslight.github.io/2017/12/20/登陆远程服务器桌面/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACwUlEQVR42u3cQY7bMAwF0Ln/pVugqwJpnP9JK0mB51WQsWU9LSSGJObnJ75+/blm3/z9ffLU47OP49x84eHh4Y2mfj3c4+fkngSQ3P/sXdES4OHh4R3jJa+/3ppnS5Bv+u2S4eHh4X0DL4lak/tnQTkeHh7e/8jLA9k8DTGbOh4eHt438JJkRJ5InYXj108dz7Xg4eHhxbzZdD/7+WB9Dw8PD29RVU+C5k2jQL71D2eLh4eHd4C3aYRqEwSzcHy2NHW2GA8PD2/Nm7ULtPFtm4bIkw4vDgY8PDy8BS8PZ/PvN1PfhOxPfzHg4eHhHeC1AfQmBJ+NnCwoHh4e3jt5+XCzV25aCmbp4OJswcPDwxuNM0va5mmLWbvVprkBDw8P71O86404KYC1paw2zRHNHw8PD+9WXt4mdR0u74+Qlhcp8PDw8I7x8sOgLZjNxtykd+tYHg8PD6/kzQr/SdJ2hm8PpyKNi4eHh3cTb7bhtknb9i1tGI2Hh4f3KV6edJg9mwPyA+bFCHh4eHhv5OUbcbIQ0VTib4q/4uHh4R3j5cX7pOzUFszaqReHFh4eHt4x3mw7bpuoNkWytra1O0/w8PDwXmYGhv/MLp9W2wpQpBuSEhoeHh7eW3jt1j9rPpgdD3ViFw8PD+9W3iz92obFbYq2PUievhEPDw/vGG+2NeeNAnmhK7+i4wcPDw/vAC/ZxNstvk1tzBIWxTLh4eHh3crbNEIl5fz8ns1RUSQj8PDw8G7ltcnZEwuxKZL9Yw54eHh4B3gnfvzvmwbaZZ21duHh4eFt3tIOnRwPyVY+K6pdj/aiyoeHh4d3Ky8/DE5MJV/WtlyHh4eH91leklbYHyfJghaJYDw8PLwv4F2nXPfhctu48CJBjIeHh3eMl2z3yabfpl/bNoK6NQEPDw/vAG9TAJuV7WcT2ics8PDw8Na835+BNcqnwwy5AAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+
+
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
