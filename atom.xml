@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://geniuslight.github.io/"/>
-  <updated>2017-12-20T11:44:49.648Z</updated>
+  <updated>2018-01-11T03:04:44.674Z</updated>
   <id>https://geniuslight.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>RGB-D数据库介绍</title>
+    <link href="https://geniuslight.github.io/2018/01/11/RGB-D%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BB%8B%E7%BB%8D/"/>
+    <id>https://geniuslight.github.io/2018/01/11/RGB-D数据库介绍/</id>
+    <published>2018-01-11T02:06:01.000Z</published>
+    <updated>2018-01-11T03:04:44.674Z</updated>
+    
+    <content type="html"><![CDATA[<p>RGB图像和深度图像的数据库简介，简单介绍在论文中看到的数据库特点、使用的任务！</p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="http://nova.nju.edu.cn/f/831c067275b540e7b3fd/?dl=1" alt="" title="">                </div>                <div class="image-caption"></div>            </figure><p><strong>SUN RGB-D: A RGB-D Scene Understanding Benchmark Suite</strong></p><ul><li>10,335 RGB-D 图像</li><li>146,617个二维多边形和58,657个具有精确的物体方向的三维边界框，以及三维空间布局和场景类别</li><li>可使用任务：Scene Classification(场景理解)，Semantic Segmentation(语义分割)，3D  Object detection (3D物体检测)，Object Orientation(物体定位)，Room Layout Estimation(房间布局估计)，Total Scene Understanding(场景理解)</li></ul><p>链<a href="http://rgbd.cs.princeton.edu/" target="_blank" rel="noopener">接：http://rgbd.cs.princeton.edu/</a></p><p><strong>RGB-D (Kinect) Object Dataset-Washington</strong></p><p>分为两部分：物体数据库和场景数据库。</p><p>1.物体数据库</p><ul><li>41,877 RGB-D图像</li><li>300种物体，51类</li><li>可使用任务：物体分类</li></ul><p>2.场景数据库（这部分没有深入了解）</p><ul><li>14个场景，包括家具（椅子，咖啡，桌子， 沙发），和物体数据库中的一个子集，包括（碗， 杯子， 麦片盒， 咖啡马克杯， 汽水罐）。ps.不知道场景和物体有什么联系</li><li>3D点云图，相机相对每个场景位置，场景中包含物体的标记</li><li>可使用任务：Detection-based Object Labeling in 3D Scenes(物体检测)</li></ul><p><a href="https://rgbd-dataset.cs.washington.edu/index.html" target="_blank" rel="noopener">链接：https://rgbd-dataset.cs.washington.edu/index.html</a></p><p><strong>一个图像数据库的汇总，1019个链接，可以说非常强大了</strong></p><p>链<a href="http://homepages.inf.ed.ac.uk/rbf/CVonline/Imagedbase.htm#action" target="_blank" rel="noopener">接：http://homepages.inf.ed.ac.uk/rbf/CVonline/Imagedbase.htm#action</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;RGB图像和深度图像的数据库简介，简单介绍在论文中看到的数据库特点、使用的任务！&lt;/p&gt;
+&lt;figure class=&quot;image-bubble&quot;&gt;
+                &lt;div class=&quot;img-lightbox&quot;&gt;
+                   
+      
+    
+    </summary>
+    
+      <category term="深度学习" scheme="https://geniuslight.github.io/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="深度学习" scheme="https://geniuslight.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
   
   <entry>
     <title>建站记录</title>
