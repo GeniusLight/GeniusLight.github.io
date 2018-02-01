@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>opencv-python读取和写入tiff图像 | 回忆积木小屋 | 多一点时间多一点爱</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="图像处理,opencv">
+    <meta name="description" content="Tiff图像介绍标签图像文件格式（Tagged Image File Format，简写为TIFF）是一种灵活的位图格式，主要用来存储包括照片和艺术图在内的图像。 TIFF是一个灵活适应性强的文件格式。通过在文件标头中使用“标签”，它能够在一个文件中处理多幅图像和数据。标签能够标明图像的如图像大小这样的基本几何尺寸，或者定义图像数据是如何排列的，或者是否使用了各种各样的图像压缩选项。例如，TIFF">
+<meta name="keywords" content="图像处理,opencv">
+<meta property="og:type" content="article">
+<meta property="og:title" content="opencv-python读取和写入tiff图像">
+<meta property="og:url" content="https://geniuslight.github.io/2018/02/01/opencv-python读取和写入tiff图像/index.html">
+<meta property="og:site_name" content="回忆积木小屋">
+<meta property="og:description" content="Tiff图像介绍标签图像文件格式（Tagged Image File Format，简写为TIFF）是一种灵活的位图格式，主要用来存储包括照片和艺术图在内的图像。 TIFF是一个灵活适应性强的文件格式。通过在文件标头中使用“标签”，它能够在一个文件中处理多幅图像和数据。标签能够标明图像的如图像大小这样的基本几何尺寸，或者定义图像数据是如何排列的，或者是否使用了各种各样的图像压缩选项。例如，TIFF">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-02-01T07:26:42.105Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="opencv-python读取和写入tiff图像">
+<meta name="twitter:description" content="Tiff图像介绍标签图像文件格式（Tagged Image File Format，简写为TIFF）是一种灵活的位图格式，主要用来存储包括照片和艺术图在内的图像。 TIFF是一个灵活适应性强的文件格式。通过在文件标头中使用“标签”，它能够在一个文件中处理多幅图像和数据。标签能够标明图像的如图像大小这样的基本几何尺寸，或者定义图像数据是如何排列的，或者是否使用了各种各样的图像压缩选项。例如，TIFF">
+    
+        <link rel="alternate" type="application/atom+xml" title="回忆积木小屋" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">light</h5>
+          <a href="mailto:18362927193@163.com" title="18362927193@163.com" class="mail">18362927193@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories/随笔"  >
+                <i class="icon icon-lg icon-pencil"></i>
+                随笔
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/GeniusLight" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">opencv-python读取和写入tiff图像</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">opencv-python读取和写入tiff图像</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-02-01T07:04:10.000Z" itemprop="datePublished" class="page-time">
+  2018-02-01
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/图像处理/">图像处理</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Tiff图像介绍"><span class="post-toc-number">1.</span> <span class="post-toc-text"><a href="#Tiff&#x56FE;&#x50CF;&#x4ECB;&#x7ECD;" class="headerlink" title="Tiff&#x56FE;&#x50CF;&#x4ECB;&#x7ECD;"></a>Tiff&#x56FE;&#x50CF;&#x4ECB;&#x7ECD;</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#opencv读取图像"><span class="post-toc-number">2.</span> <span class="post-toc-text"><a href="#opencv&#x8BFB;&#x53D6;&#x56FE;&#x50CF;" class="headerlink" title="opencv&#x8BFB;&#x53D6;&#x56FE;&#x50CF;"></a>opencv&#x8BFB;&#x53D6;&#x56FE;&#x50CF;</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#示例"><span class="post-toc-number">3.</span> <span class="post-toc-text"><a href="#&#x793A;&#x4F8B;" class="headerlink" title="&#x793A;&#x4F8B;"></a>&#x793A;&#x4F8B;</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-opencv-python读取和写入tiff图像"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">opencv-python读取和写入tiff图像</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-02-01 15:04:10" datetime="2018-02-01T07:04:10.000Z"  itemprop="datePublished">2018-02-01</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/图像处理/">图像处理</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="Tiff图像介绍"><a href="#Tiff图像介绍" class="headerlink" title="Tiff图像介绍"></a>Tiff图像介绍</h2><p><strong>标签图像文件格式</strong>（<strong>Tagged Image File Format</strong>，简写为<strong>TIFF</strong>）是一种灵活的位图格式，主要用来存储包括照片和艺术图在内的图像。</p>
+<p>TIFF是一个灵活适应性强的文件格式。通过在文件标头中使用“标签”，它能够在一个文件中处理多幅图像和数据。标签能够标明图像的如图像大小这样的基本几何尺寸，或者定义图像数据是如何排列的，或者是否使用了各种各样的图像压缩选项。例如，TIFF可以包含JPEG和进程长度编码压缩的图像。TIFF文件也可以包含基于矢量的裁剪区域（剪切或者构成主体图像的轮廓）。使用无损格式存储图像的能力使TIFF文件成为图像存档的有效方法。与JPEG不同，TIFF文件可以编辑然后重新存储而不会有压缩损失。其它的一些TIFF文件选项包括多层或者多页。</p>
+<h2 id="opencv读取图像"><a href="#opencv读取图像" class="headerlink" title="opencv读取图像"></a>opencv读取图像</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line">cv2.imread(<span class="string">"filename"</span>,flags)</span><br></pre></td></tr></table></figure>
+<p>对于cv2，imread的关于通道数和位深的flags有五种选择：</p>
+<blockquote>
+<p>IMREAD_UNCHANGED = -1#不进行转化，比如保存为了16位的图片，读取出来仍然为16位。<br>IMREAD_GRAYSCALE = 0#进行转化为灰度图，比如保存为了16位的图片，读取出来为8位，类型为CV_8UC1。<br>IMREAD_COLOR = 1#进行转化为RGB三通道图像，图像深度转为8位<br>IMREAD_ANYDEPTH = 2#保持图像深度不变，进行转化为灰度图。<br>IMREAD_ANYCOLOR = 4#若图像通道数小于等于3，则保持原通道数不变；若通道数大于3则只取取前三个通道。图像深度转为8位</p>
+</blockquote>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><p>不转化读取，图像通道和数据类型都不会变</p>
+<p>不转化读取，tiff图像保存为其他图像，则数据类型可能改变</p>
+<p>不转化读取，tiff保持为tiff图像，则不发生改变</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">import cv2</span><br><span class="line">import sys</span><br><span class="line">import os</span><br><span class="line"></span><br><span class="line">img_path = <span class="string">'s1a-iw-grd-vh-20150823t221233-20150823t221258-007396-00a2ca-002'</span></span><br><span class="line"></span><br><span class="line">img_list = os.listdir(img_path)</span><br><span class="line"><span class="keyword">for</span> img_name <span class="keyword">in</span> img_list:</span><br><span class="line">    <span class="keyword">if</span> <span class="string">'.tiff'</span> <span class="keyword">in</span> img_name:</span><br><span class="line">        #保持不变读取</span><br><span class="line">        <span class="selector-tag">img</span> = cv2.imread(os<span class="selector-class">.path</span><span class="selector-class">.join</span>(img_path, img_name), -<span class="number">1</span>)</span><br><span class="line">        print(<span class="string">'不进行转化读取'</span>)</span><br><span class="line">        print(<span class="selector-tag">img</span>.dtype)</span><br><span class="line">        print(<span class="selector-tag">img</span>.shape)</span><br><span class="line">        #默认读取方式</span><br><span class="line">        <span class="selector-tag">img</span> = cv2.imread(os<span class="selector-class">.path</span><span class="selector-class">.join</span>(img_path, img_name))</span><br><span class="line">        print(<span class="string">'进行转换读取'</span>)</span><br><span class="line">        print(<span class="selector-tag">img</span>.dtype)</span><br><span class="line">        print(<span class="selector-tag">img</span>.shape)</span><br><span class="line">    <span class="keyword">if</span> <span class="string">'.jpg'</span> <span class="keyword">in</span> img_name:</span><br><span class="line">        #上述文件保存为jpg后读取</span><br><span class="line">        <span class="selector-tag">img</span> = cv2.imread(os<span class="selector-class">.path</span><span class="selector-class">.join</span>(img_path, img_name), -<span class="number">1</span>)</span><br><span class="line">        print(<span class="string">'不进行转化读取后保存为jpg，不进行转化读取（此处保存完成，直接读取）'</span>)</span><br><span class="line">        print(<span class="selector-tag">img</span>.dtype)</span><br><span class="line">        print(<span class="selector-tag">img</span>.shape)</span><br></pre></td></tr></table></figure>
+<p>结果如下：</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">不进行转化读取后保存为jpg，不进行转化读取（此处保存完成，直接读取）</span><br><span class="line">uint8</span><br><span class="line">(<span class="number">448</span>, <span class="number">448</span>)</span><br><span class="line">不进行转化读取</span><br><span class="line">uint16</span><br><span class="line">(<span class="number">448</span>, <span class="number">448</span>)</span><br><span class="line">进行转换读取</span><br><span class="line">uint8</span><br><span class="line">(<span class="number">448</span>, <span class="number">448</span>, <span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-02-01T07:26:42.105Z" itemprop="dateUpdated">2018-02-01 15:26:42</time>
+</span><br>
+
+
+        
+        不积跬步，无以至千里
+        
+    </div>
+    <footer>
+        <a href="https://geniuslight.github.io">
+            <img src="/img/avatar.jpg" alt="light">
+            light
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/opencv/">opencv</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/图像处理/">图像处理</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://geniuslight.github.io/2018/02/01/opencv-python读取和写入tiff图像/&title=《opencv-python读取和写入tiff图像》 — 回忆积木小屋&pic=https://geniuslight.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://geniuslight.github.io/2018/02/01/opencv-python读取和写入tiff图像/&title=《opencv-python读取和写入tiff图像》 — 回忆积木小屋&source=多一点时间多一点爱" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://geniuslight.github.io/2018/02/01/opencv-python读取和写入tiff图像/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《opencv-python读取和写入tiff图像》 — 回忆积木小屋&url=https://geniuslight.github.io/2018/02/01/opencv-python读取和写入tiff图像/&via=https://geniuslight.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://geniuslight.github.io/2018/02/01/opencv-python读取和写入tiff图像/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/02/01/opencv-python实现图像色彩空间转换/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">opencv-python实现图像色彩空间转换</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/01/30/转载-用frp打开一扇通向内网的门/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">[转载]用frp打开一扇通向内网的门</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>light &copy; 2017 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://geniuslight.github.io/2018/02/01/opencv-python读取和写入tiff图像/&title=《opencv-python读取和写入tiff图像》 — 回忆积木小屋&pic=https://geniuslight.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://geniuslight.github.io/2018/02/01/opencv-python读取和写入tiff图像/&title=《opencv-python读取和写入tiff图像》 — 回忆积木小屋&source=多一点时间多一点爱" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://geniuslight.github.io/2018/02/01/opencv-python读取和写入tiff图像/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《opencv-python读取和写入tiff图像》 — 回忆积木小屋&url=https://geniuslight.github.io/2018/02/01/opencv-python读取和写入tiff图像/&via=https://geniuslight.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://geniuslight.github.io/2018/02/01/opencv-python读取和写入tiff图像/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACrUlEQVR42u3aQY7jMAwEwPz/07MPmI3TTUqzs0D5FDiGo9JBVJp6veLr69v1fH/25u/3n585duHh4eGth/7MSH7y+5Pvvk1G8gz+MMV4eHh413izIebXrPDk43l7Hw8PD++X8fItcvL+/J14eHh4/xfvuUi0U5Nsmn+0MODh4eHFvDwI2G+4o2EF03c4a8HDw8ObJwOvWZH4yc9X+nt4eHh466563gzLjwLkhefAaPHw8PAu8GavbttXedyw3y7j4eHh3eYlr2jv7wPi9tu3E4qHh4d3mbc5EDCjtmFxfUABDw8P7xpv8zm/c7YYJAEHHh4e3g1ePogbLau8nOQFI0p/8fDw8A7xnhmbyDVZ3PMmWX30Cg8PD+8oL98Et+HFjYU+CUSirAUPDw9vzdvsSDcHAtqJriNdPDw8vAu85IfzH8u31/mkzNIGPDw8vNu8YWOpZM8i481k4eHh4d3g7Zv97TPtgapVCw0PDw/vMm8T2s6W731B+qDAw8PD+0e89j9+3uhqn6/fg4eHh3eBN2vqt/FEnou02/RiE4+Hh4d3gdceomoLSds8a9tddRsMDw8Pb8RLFuXkakmbQwPF1ODh4eFd422W+HaI7XGEfDx/eRIPDw/vAq/tE82C2n1skQcQqzYYHh4e3pq3CXBPtc2GcW07i3h4eHgLXr1hDe7PttptAag7e3h4eHjXeMkgZu2rTREq2mN4eHh4R3lf5XWqJLQFYBia4OHh4V3gtQtusqzPYt88hjiAwcPDw1vz8r/6z9vf2UGBvHk2LAx4eHh413htgDs7PpUv+nk1+zDdeHh4eL+AV7egFtv0A9EDHh4e3i/gJXfaiLadjuJteHh4eNd4m+bTLMBNxpCXk+jQFR4eHt4h3oE//KN4YnZI63kjvurv4eHh4X3m/QFaAg0BK2StmgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '已离开此页面！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又回来了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

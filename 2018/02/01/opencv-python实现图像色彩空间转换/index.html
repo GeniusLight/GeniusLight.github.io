@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>opencv-python实现图像色彩空间转换 | 回忆积木小屋 | 多一点时间多一点爱</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="图像处理,opencv">
+    <meta name="description" content="opencv自带RGB ↔ GRAYTransformations within RGB space like adding/removing the alpha channel, reversing the channel order, conversion to/from 16-bit RGB color (R5:G6:B5 or R5:G5:B5), as well as conversio">
+<meta name="keywords" content="图像处理,opencv">
+<meta property="og:type" content="article">
+<meta property="og:title" content="opencv-python实现图像色彩空间转换">
+<meta property="og:url" content="https://geniuslight.github.io/2018/02/01/opencv-python实现图像色彩空间转换/index.html">
+<meta property="og:site_name" content="回忆积木小屋">
+<meta property="og:description" content="opencv自带RGB ↔ GRAYTransformations within RGB space like adding/removing the alpha channel, reversing the channel order, conversion to/from 16-bit RGB color (R5:G6:B5 or R5:G5:B5), as well as conversio">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://opencv-python-tutroals.readthedocs.io/en/latest/_images/frame.jpg">
+<meta property="og:image" content="http://img.blog.csdn.net/20160809153336613">
+<meta property="og:image" content="http://img.blog.csdn.net/20160809155500456">
+<meta property="og:image" content="http://www.learnopencv.com/wp-content/uploads/2015/07/colorscale_autumn.jpg">
+<meta property="og:image" content="http://www.learnopencv.com/wp-content/uploads/2015/07/colorscale_bone.jpg">
+<meta property="og:image" content="http://www.learnopencv.com/wp-content/uploads/2015/07/colorscale_jet.jpg">
+<meta property="og:image" content="http://www.learnopencv.com/wp-content/uploads/2015/07/colorscale_winter.jpg">
+<meta property="og:image" content="http://www.learnopencv.com/wp-content/uploads/2015/07/colorscale_rainbow.jpg">
+<meta property="og:image" content="http://www.learnopencv.com/wp-content/uploads/2015/07/colorscale_ocean.jpg">
+<meta property="og:image" content="http://www.learnopencv.com/wp-content/uploads/2015/07/colorscale_summer.jpg">
+<meta property="og:image" content="http://www.learnopencv.com/wp-content/uploads/2015/07/colorscale_spring.jpg">
+<meta property="og:image" content="http://www.learnopencv.com/wp-content/uploads/2015/07/colorscale_cool.jpg">
+<meta property="og:image" content="http://www.learnopencv.com/wp-content/uploads/2015/07/colorscale_hsv.jpg">
+<meta property="og:image" content="http://www.learnopencv.com/wp-content/uploads/2015/07/colorscale_pink.jpg">
+<meta property="og:image" content="http://www.learnopencv.com/wp-content/uploads/2015/07/colorscale_hot.jpg">
+<meta property="og:image" content="http://www.learnopencv.com/wp-content/uploads/2015/07/colormap_opencv_example.jpg">
+<meta property="og:updated_time" content="2018-02-01T07:35:26.819Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="opencv-python实现图像色彩空间转换">
+<meta name="twitter:description" content="opencv自带RGB ↔ GRAYTransformations within RGB space like adding/removing the alpha channel, reversing the channel order, conversion to/from 16-bit RGB color (R5:G6:B5 or R5:G5:B5), as well as conversio">
+<meta name="twitter:image" content="https://opencv-python-tutroals.readthedocs.io/en/latest/_images/frame.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="回忆积木小屋" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">light</h5>
+          <a href="mailto:18362927193@163.com" title="18362927193@163.com" class="mail">18362927193@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories/随笔"  >
+                <i class="icon icon-lg icon-pencil"></i>
+                随笔
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/GeniusLight" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">opencv-python实现图像色彩空间转换</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">opencv-python实现图像色彩空间转换</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-02-01T07:18:41.000Z" itemprop="datePublished" class="page-time">
+  2018-02-01
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/图像处理/">图像处理</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#opencv自带RGB-↔-GRAY"><span class="post-toc-number">1.</span> <span class="post-toc-text"><a href="#opencv&#x81EA;&#x5E26;RGB-&#x2194;-GRAY" class="headerlink" title="opencv&#x81EA;&#x5E26;RGB &#x2194; GRAY"></a>opencv&#x81EA;&#x5E26;RGB &#x2194; GRAY</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Changing-Color-space"><span class="post-toc-number">1.1.</span> <span class="post-toc-text"><a href="#Changing-Color-space" class="headerlink" title="Changing Color-space"></a>Changing Color-space</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Changing-Color-space-1"><span class="post-toc-number">1.2.</span> <span class="post-toc-text"><a href="#Changing-Color-space-1" class="headerlink" title="Changing Color-space"></a>Changing Color-space</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Object-Tracking-示例"><span class="post-toc-number">1.3.</span> <span class="post-toc-text"><a href="#Object-Tracking-&#x793A;&#x4F8B;" class="headerlink" title="Object Tracking(&#x793A;&#x4F8B;)"></a>Object Tracking(&#x793A;&#x4F8B;)</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#转载-使用伪色彩映射的方法进行转化"><span class="post-toc-number">2.</span> <span class="post-toc-text"><a href="#&#x8F6C;&#x8F7D;-&#x4F7F;&#x7528;&#x4F2A;&#x8272;&#x5F69;&#x6620;&#x5C04;&#x7684;&#x65B9;&#x6CD5;&#x8FDB;&#x884C;&#x8F6C;&#x5316;" class="headerlink" title="[&#x8F6C;&#x8F7D;]&#x4F7F;&#x7528;&#x4F2A;&#x8272;&#x5F69;&#x6620;&#x5C04;&#x7684;&#x65B9;&#x6CD5;&#x8FDB;&#x884C;&#x8F6C;&#x5316;"></a>[&#x8F6C;&#x8F7D;]&#x4F7F;&#x7528;&#x4F2A;&#x8272;&#x5F69;&#x6620;&#x5C04;&#x7684;&#x65B9;&#x6CD5;&#x8FDB;&#x884C;&#x8F6C;&#x5316;</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-opencv-python实现图像色彩空间转换"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">opencv-python实现图像色彩空间转换</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-02-01 15:18:41" datetime="2018-02-01T07:18:41.000Z"  itemprop="datePublished">2018-02-01</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/图像处理/">图像处理</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="opencv自带RGB-↔-GRAY"><a href="#opencv自带RGB-↔-GRAY" class="headerlink" title="opencv自带RGB ↔ GRAY"></a>opencv自带RGB ↔ GRAY</h2><p>Transformations within RGB space like adding/removing the alpha channel, reversing the channel order, conversion to/from 16-bit RGB color (R5:G6:B5 or R5:G5:B5), as well as conversion to/from grayscale using:</p>
+<p>RGB[A] to Gray:Y←0.299⋅R+0.587⋅G+0.114⋅B<br>and</p>
+<p>Gray to RGB[A]:R←Y,G←Y,B←Y,A←max(ChannelRange)<br>The conversion from a RGB image to gray is done with:</p>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">1 </span>cvtColor(src, bwsrc, cv::COLOR_RGB2GRAY);</span><br></pre></td></tr></table></figure>
+<p><a href="https://docs.opencv.org/3.1.0/de/d25/imgproc_color_conversions.html" target="_blank" rel="noopener">转化算法详细</a></p>
+<h3 id="Changing-Color-space"><a href="#Changing-Color-space" class="headerlink" title="Changing Color-space"></a>Changing Color-space</h3><p>There are more than 150 color-space conversion methods available in OpenCV. But we will look into only two which are most widely used ones, BGR↔ Gray and BGR ↔ HSV.</p>
+<p>For color conversion, we use the function <code>cv2.cvtColor(input_image, flag)</code> where <code>flag</code> determines the type of conversion.</p>
+<p>For BGR –&gt;Gray conversion we use the flags <code>cv2.COLOR_BGR2GRAY</code>. Similarly for BGR –&gt; HSV, we use the flag <code>cv2.COLOR_BGR2HSV</code>. To get other flags, just run following commands in your Python terminal :</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import cv2</span><br><span class="line">flags = [<span class="selector-tag">i</span> <span class="keyword">for</span> <span class="selector-tag">i</span> <span class="keyword">in</span> dir(cv2) <span class="keyword">if</span> <span class="selector-tag">i</span>.startswith(<span class="string">'COLOR_'</span>)]</span><br><span class="line">print flags</span><br></pre></td></tr></table></figure>
+<p><strong>Note</strong></p>
+<p>For HSV, Hue range is [0,179], Saturation range is [0,255] and Value range is [0,255]. Different softwares use different scales. So if you are comparing OpenCV values with them, you need to normalize these ranges.</p>
+<h3 id="Changing-Color-space-1"><a href="#Changing-Color-space-1" class="headerlink" title="Changing Color-space"></a>Changing Color-space</h3><p>There are more than 150 color-space conversion methods available in OpenCV. But we will look into only two which are most widely used ones, BGR ↔ Gray and BGR ↔  HSV.</p>
+<p>For color conversion, we use the function <code>cv2.cvtColor(input_image, flag)</code> where <code>flag</code> determines the type of conversion.</p>
+<p>For BGR-&gt;Gray conversion we use the flags <code>cv2.COLOR_BGR2GRAY</code>. Similarly for BGR-&gt;HSV, we use the flag <code>cv2.COLOR_BGR2HSV</code>. To get other flags, just run following commands in your Python terminal :</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import cv2</span><br><span class="line">flags = [<span class="selector-tag">i</span> <span class="keyword">for</span> <span class="selector-tag">i</span> <span class="keyword">in</span> dir(cv2) <span class="keyword">if</span> <span class="selector-tag">i</span>.startswith(<span class="string">'COLOR_'</span>)]</span><br><span class="line">print flags</span><br></pre></td></tr></table></figure>
+<p><strong>Note</strong></p>
+<p>For HSV, Hue range is [0,179], Saturation range is [0,255] and Value range is [0,255]. Different softwares use different scales. So if you are comparing OpenCV values with them, you need to normalize these ranges.</p>
+<p>ps. 此处使用的是cv2,cv不含COLOR_BGR2GRAY，但是有类似方法</p>
+<h3 id="Object-Tracking-示例"><a href="#Object-Tracking-示例" class="headerlink" title="Object Tracking(示例)"></a>Object Tracking(示例)</h3><p>Now we know how to convert BGR image to HSV, we can use this to extract a colored object. In HSV, it is more easier to represent a color than RGB color-space. In our application, we will try to extract a blue colored object. So here is the method:</p>
+<blockquote>
+<ul>
+<li>Take each frame of the video</li>
+<li>Convert from BGR to HSV color-space</li>
+<li>We threshold the HSV image for a range of blue color</li>
+<li>Now extract the blue object alone, we can do whatever on that image we want.</li>
+</ul>
+</blockquote>
+<p>Below is the code which are commented in detail :</p>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">import</span> cv2</span><br><span class="line"><span class="built_in">import</span> numpy as np</span><br><span class="line"></span><br><span class="line"><span class="attr">cap</span> = cv2.VideoCapture(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">while(<span class="number">1</span>):</span><br><span class="line">    <span class="comment"># Take each frame</span></span><br><span class="line">    _, <span class="attr">frame</span> = cap.read()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Convert BGR to HSV</span></span><br><span class="line">    <span class="attr">hsv</span> = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># define range of blue color in HSV</span></span><br><span class="line">    <span class="attr">lower_blue</span> = np.array([<span class="number">110</span>,<span class="number">50</span>,<span class="number">50</span>])</span><br><span class="line">    <span class="attr">upper_blue</span> = np.array([<span class="number">130</span>,<span class="number">255</span>,<span class="number">255</span>])</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Threshold the HSV image to get only blue colors</span></span><br><span class="line">    <span class="attr">mask</span> = cv2.inRange(hsv, lower_blue, upper_blue)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Bitwise-AND mask and original image</span></span><br><span class="line">    <span class="attr">res</span> = cv2.bitwise_and(frame,frame, <span class="attr">mask=</span> mask)</span><br><span class="line"></span><br><span class="line">    cv2.imshow('frame',frame)</span><br><span class="line">    cv2.imshow('mask',mask)</span><br><span class="line">    cv2.imshow('res',res)</span><br><span class="line">    <span class="attr">k</span> = cv2.waitKey(<span class="number">5</span>) &amp; <span class="number">0</span>xFF</span><br><span class="line">    <span class="keyword">if</span> <span class="attr">k</span> == <span class="number">27</span>:</span><br><span class="line">        break</span><br><span class="line"></span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+<p>Below image shows tracking of the blue object:</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://opencv-python-tutroals.readthedocs.io/en/latest/_images/frame.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h2 id="转载-使用伪色彩映射的方法进行转化"><a href="#转载-使用伪色彩映射的方法进行转化" class="headerlink" title="[转载]使用伪色彩映射的方法进行转化"></a>[转载]使用伪色彩映射的方法进行转化</h2><p>转载自：</p>
+<p><a href="http://blog.csdn.net/yhl_leo/article/details/52163236" target="_blank" rel="noopener">http://blog.csdn.net/yhl_leo/article/details/52163236</a></p>
+<p>在实验过程中，经常见到别人实验中展现的酷炫多彩的分割图或者概率图的伪彩色图，如随意生成一张概率图：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20160809153336613" alt="gray" title="">
+                </div>
+                <div class="image-caption">gray</div>
+            </figure>
+<p>大家都知道人眼对灰度的识别能力远差于彩色的识别能力，这灰蒙蒙的是什么鬼…</p>
+<p>可以使用OpenCV的<code>applyColorMap</code>对图像进行颜色渲染，生成伪彩色图像：</p>
+<p><strong>C++</strong></p>
+<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;opencv2/contrib/contrib.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;opencv2/core/core.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;opencv2/highgui/highgui.hpp&gt;</span></span></span><br><span class="line"></span><br><span class="line">using namespace cv<span class="comment">; </span></span><br><span class="line"></span><br><span class="line">Mat im_gray = imread(<span class="string">"pluto.jpg"</span>, IMREAD_GRAYSCALE)<span class="comment">;</span></span><br><span class="line">Mat im_color<span class="comment">;</span></span><br><span class="line">applyColorMap(im_gray, im_color, COLORMAP_HSV)<span class="comment">;123456789</span></span><br></pre></td></tr></table></figure>
+<p><strong>Python</strong></p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import cv2 </span><br><span class="line"></span><br><span class="line">im_gray = cv2.imread(<span class="string">"pluto.jpg"</span>, cv2.IMREAD_GRAYSCALE)</span><br><span class="line">im_color = cv2.applyColorMap(im_gray, cv2.COLORMAP_HSV)1234</span><br></pre></td></tr></table></figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20160809155500456" alt="color" title="">
+                </div>
+                <div class="image-caption">color</div>
+            </figure>
+<p>可以看出，伪彩色图中展现的信息更多。</p>
+<p>OpenCV定义了12种<code>COLORMAP_*.</code>可以产生这样的</p>
+<table>
+<thead>
+<tr>
+<th><strong>Value</strong></th>
+<th><strong>Name</strong></th>
+<th><strong>Scale</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><strong>COLORMAP_AUTUMN</strong></td>
+<td><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://www.learnopencv.com/wp-content/uploads/2015/07/colorscale_autumn.jpg" alt="colorscale_autumn" title="">
+                </div>
+                <div class="image-caption">colorscale_autumn</div>
+            </figure></td>
+</tr>
+<tr>
+<td>1</td>
+<td><strong>COLORMAP_BONE</strong></td>
+<td><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://www.learnopencv.com/wp-content/uploads/2015/07/colorscale_bone.jpg" alt="colorscale_bone" title="">
+                </div>
+                <div class="image-caption">colorscale_bone</div>
+            </figure></td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>COLORMAP_JET</strong></td>
+<td><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://www.learnopencv.com/wp-content/uploads/2015/07/colorscale_jet.jpg" alt="colorscale_jet" title="">
+                </div>
+                <div class="image-caption">colorscale_jet</div>
+            </figure></td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>COLORMAP_WINTER</strong></td>
+<td><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://www.learnopencv.com/wp-content/uploads/2015/07/colorscale_winter.jpg" alt="colorscale_winter" title="">
+                </div>
+                <div class="image-caption">colorscale_winter</div>
+            </figure></td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>COLORMAP_RAINBOW</strong></td>
+<td><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://www.learnopencv.com/wp-content/uploads/2015/07/colorscale_rainbow.jpg" alt="colorscale_rainbow" title="">
+                </div>
+                <div class="image-caption">colorscale_rainbow</div>
+            </figure></td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>COLORMAP_OCEAN</strong></td>
+<td><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://www.learnopencv.com/wp-content/uploads/2015/07/colorscale_ocean.jpg" alt="colorscale_ocean" title="">
+                </div>
+                <div class="image-caption">colorscale_ocean</div>
+            </figure></td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>COLORMAP_SUMMER</strong></td>
+<td><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://www.learnopencv.com/wp-content/uploads/2015/07/colorscale_summer.jpg" alt="colorscale_summer" title="">
+                </div>
+                <div class="image-caption">colorscale_summer</div>
+            </figure></td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong>COLORMAP_SPRING</strong></td>
+<td><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://www.learnopencv.com/wp-content/uploads/2015/07/colorscale_spring.jpg" alt="colorscale_spring" title="">
+                </div>
+                <div class="image-caption">colorscale_spring</div>
+            </figure></td>
+</tr>
+<tr>
+<td>8</td>
+<td><strong>COLORMAP_COOL</strong></td>
+<td><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://www.learnopencv.com/wp-content/uploads/2015/07/colorscale_cool.jpg" alt="colorscale_cool" title="">
+                </div>
+                <div class="image-caption">colorscale_cool</div>
+            </figure></td>
+</tr>
+<tr>
+<td>9</td>
+<td><strong>COLORMAP_HSV</strong></td>
+<td><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://www.learnopencv.com/wp-content/uploads/2015/07/colorscale_hsv.jpg" alt="colorscale_hsv" title="">
+                </div>
+                <div class="image-caption">colorscale_hsv</div>
+            </figure></td>
+</tr>
+<tr>
+<td>10</td>
+<td><strong>COLORMAP_PINK</strong></td>
+<td><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://www.learnopencv.com/wp-content/uploads/2015/07/colorscale_pink.jpg" alt="colorscale_pink" title="">
+                </div>
+                <div class="image-caption">colorscale_pink</div>
+            </figure></td>
+</tr>
+<tr>
+<td>11</td>
+<td><strong>COLORMAP_HOT</strong></td>
+<td><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://www.learnopencv.com/wp-content/uploads/2015/07/colorscale_hot.jpg" alt="colorscale_hot" title="">
+                </div>
+                <div class="image-caption">colorscale_hot</div>
+            </figure></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p>此外，还可以自己定义一个颜色查询图，将灰度值0-255分别映射到对应的256种颜色上，在OpenCV中，可以创建一个256x1的彩色图，存储着预先定义的256种彩色值，通过使用<code>LUT</code>函数将彩色值映射到灰度图像上：</p>
+<p><strong>C++</strong></p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Mat im_color;</span><br><span class="line">// NOTE : <span class="type">im_gray</span> <span class="keyword">is</span> <span class="number">3</span>-channel image <span class="keyword">with</span> identical </span><br><span class="line">// red, green, blue channels.  </span><br><span class="line">LUT(im_gray, lut, im_color);<span class="number">1234</span></span><br></pre></td></tr></table></figure>
+<p><strong>Python</strong></p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># NOTE : im_gray is 3-channel image with identical</span></span><br><span class="line"><span class="comment"># red, green, blue channels.  </span></span><br><span class="line"><span class="attr">im_color</span> = cv2.LUT(im_gray, lut)<span class="number">123</span></span><br></pre></td></tr></table></figure>
+<p>其中，对于多通道的输入，参数<code>lut</code>的通道数可以为1或者与输入图像的通道数相同。</p>
+<p>附上一张OpenCV提供的12种样式表的示例图：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://www.learnopencv.com/wp-content/uploads/2015/07/colormap_opencv_example.jpg" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+<p>参考：</p>
+<ul>
+<li><a href="https://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_imgproc/py_colorspaces/py_colorspaces.html?highlight=cvtcolor" target="_blank" rel="noopener">Changing Colorspaces</a></li>
+<li><a href="https://docs.opencv.org/3.1.0/de/d25/imgproc_color_conversions.html" target="_blank" rel="noopener">Color conversions</a></li>
+<li>OpenCV docs: <a href="http://docs.opencv.org/2.4/modules/contrib/doc/facerec/colormaps.html" target="_blank" rel="noopener">applyColorMap</a></li>
+<li>OpenCV docs: <a href="http://docs.opencv.org/2.4/modules/core/doc/operations_on_arrays.html?highlight=lut#cv2.LUT" target="_blank" rel="noopener">LUT</a></li>
+<li>Learn OpenCV: <a href="http://www.learnopencv.com/applycolormap-for-pseudocoloring-in-opencv-c-python/" target="_blank" rel="noopener">applyColorMap for pseudocoloring in OpenCV</a></li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-02-01T07:35:26.819Z" itemprop="dateUpdated">2018-02-01 15:35:26</time>
+</span><br>
+
+
+        
+        不积跬步，无以至千里
+        
+    </div>
+    <footer>
+        <a href="https://geniuslight.github.io">
+            <img src="/img/avatar.jpg" alt="light">
+            light
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/opencv/">opencv</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/图像处理/">图像处理</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://geniuslight.github.io/2018/02/01/opencv-python实现图像色彩空间转换/&title=《opencv-python实现图像色彩空间转换》 — 回忆积木小屋&pic=https://geniuslight.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://geniuslight.github.io/2018/02/01/opencv-python实现图像色彩空间转换/&title=《opencv-python实现图像色彩空间转换》 — 回忆积木小屋&source=多一点时间多一点爱" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://geniuslight.github.io/2018/02/01/opencv-python实现图像色彩空间转换/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《opencv-python实现图像色彩空间转换》 — 回忆积木小屋&url=https://geniuslight.github.io/2018/02/01/opencv-python实现图像色彩空间转换/&via=https://geniuslight.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://geniuslight.github.io/2018/02/01/opencv-python实现图像色彩空间转换/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/02/01/opencv-python读取和写入tiff图像/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">opencv-python读取和写入tiff图像</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>light &copy; 2017 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://geniuslight.github.io/2018/02/01/opencv-python实现图像色彩空间转换/&title=《opencv-python实现图像色彩空间转换》 — 回忆积木小屋&pic=https://geniuslight.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://geniuslight.github.io/2018/02/01/opencv-python实现图像色彩空间转换/&title=《opencv-python实现图像色彩空间转换》 — 回忆积木小屋&source=多一点时间多一点爱" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://geniuslight.github.io/2018/02/01/opencv-python实现图像色彩空间转换/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《opencv-python实现图像色彩空间转换》 — 回忆积木小屋&url=https://geniuslight.github.io/2018/02/01/opencv-python实现图像色彩空间转换/&via=https://geniuslight.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://geniuslight.github.io/2018/02/01/opencv-python实现图像色彩空间转换/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADLklEQVR42u3awWrjQBAEUP//T2ch7GFhY1PVrYA1fjqJYEvzxodOV8/jEV9f39e/98+u/Ant/f9vSd67urCxsbFvwk4Yz+6fwV4vK9mydjvqnwQbGxv7OHZetNrXz5aYv3H2k2BjY2N/JrstQq+X+PrJyXc3xRUbGxv7M9ntP/15GJRscRtXYWNjY38aOwckBSwJ8b/K6+LRBTY2NvZB7Nmg9z3vf32+jY2Njf1m7FkJmQ2DZ41KG1dFCmxsbOyD2G2Is4l+8uOSszYmiauiE0bY2NjYN2TPFtoWuXYrW8BlQRI2Njb2rdhJUzGLmfKB636o0A59sbGxsU9it+FOvhH7EtgObuvyiY2NjX0Qex/Kt8ir5tLtcAIbGxv7PHZbGDawTcPThlbRiBcbGxv7CHYbCc0Gw+1Yty2Tw43GxsbGPpSdI+vDjmW4nx8GWvVe2NjY2EewZ2Vp9pl2CDEbHuTlExsbG/vu7E0o0x7TaTerHQMk6//7GWxsbOzj2HkMtDlAs2lyrj0YhI2NjX0Se1UGglZh1vC0jcdlg15sbGzsG7JnI9KkyM1Cn/aN7TGgH+o2NjY29kHsJL6f/WWz6Kue8GhrJjY2NvZN2G2gk89Jh4tYR0t1ecPGxsa+Obsd0OZR0axM7stbtGZsbGzsQ9l5iNM+rY2Q8i0ejhCwsbGxD2K3y50FScP580XFsui9sLGxsW/IvurATV5I2sQrH+UWPxs2Njb2Qew2WmrHvVcdBtoUOWxsbOzPZOdbkLccm+bh9fOTEjsdf2NjY2O/OzspJPmm7MOgtqVJ4qofPomNjY19ELttBtqFJkWlHSHMiiI2Njb2qez8lXmRy1uUzRC3va9zMmxsbOxbsX+7YcgPBs1GuXU7hI2NjX0cuy0/m7hnFkK1pTR6NDY2NvYR7H24n4RH7WGgtl2ZDTmwsbGxT2K3MdCsOO0P+mwKGDY2NvYnsPNmYLOsZEGz4UE7VMDGxsb+THY7Kn4Ny0vgJlTCxsbGxs6jnLypyDduFktF+Rk2Njb2cexZ0NMOBtotvqrIPS1g2NjY2EewNwdorj0osxlItEMObGxs7CPYfwBQeUUoA79ztQAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '已离开此页面！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又回来了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
