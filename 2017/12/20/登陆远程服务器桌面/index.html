@@ -31,7 +31,7 @@
 <meta property="og:image" content="http://img.blog.csdn.net/20171127185425460?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2FuZ19zaGVuX3Rhbw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 <meta property="og:image" content="http://img.blog.csdn.net/20171127185748696?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2FuZ19zaGVuX3Rhbw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 <meta property="og:image" content="http://img.blog.csdn.net/20171127190313823?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2FuZ19zaGVuX3Rhbw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:updated_time" content="2017-12-24T15:17:59.981Z">
+<meta property="og:updated_time" content="2018-03-08T16:55:19.245Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="登陆远程服务器桌面">
 <meta name="twitter:description" content="解决方案   序号 方案 简单区别     方案一 Xmanager 1.VNC连接时及时突然中断（比如断网），不影响操作进行；2.不需要在服务器上装软件，需要在你的电脑上装相应软件，使用SSH协议；3.正版要钱   方案二 VNC(Virtual Network Computing) 1.本地操作突然中断，服务器端操作也中断；2.在服务器端装vncserver（有很多版本选择）,你的电脑装vnc">
@@ -253,7 +253,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"><span class="comment"># Uncomment the following two lines for normal desktop:</span></span><br><span class="line"><span class="comment"># unset SESSION_MANAGER</span></span><br><span class="line"><span class="comment"># exec /etc/X11/xinit/xinitrc</span></span><br><span class="line">[ -x /etc/vnc/xstartup ] &amp;&amp; <span class="built_in">exec</span> /etc/vnc/xstartup</span><br><span class="line">[ -r <span class="variable">$HOME</span>/.Xresources ] &amp;&amp; xrdb <span class="variable">$HOME</span>/.Xresources</span><br><span class="line">xsetroot -solid grey</span><br><span class="line">vncconfig -iconic &amp;</span><br><span class="line">x-terminal-emulator -geometry 80x24+10+10 -ls -title <span class="string">"<span class="variable">$VNCDESKTOP</span> Desktop"</span> &amp;</span><br><span class="line"><span class="comment">#x-window-manager &amp;</span></span><br><span class="line">sesion-manager &amp; xfdesktop &amp; xfce4-panel &amp;</span><br><span class="line">xfce4-menu-plugin &amp;</span><br><span class="line">xfsettingsd &amp;</span><br><span class="line">xfconfd &amp;</span><br><span class="line">xfwm4 &amp;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>执行<code>sudo update-alternatives --config x-terminal-emulator</code>，选择“/usr/bin/xterm”项或者“/usr/bin/xfce4-terminal.wrapper”，配置模拟终端,否则登录后无法启动终端</li>
-<li>执行<code>vncserver - -geometry 1920×1080  :1</code>，再次启动vnc server，其中1920X1080是屏幕分辨率，可自行修改</li>
+<li>执行<code>vncserver -geometry 1920×1080  :1</code>，再次启动vnc server，其中1920X1080是屏幕分辨率，可自行修改</li>
 <li>远程运行vnc的客户端（如：VNC Viewer）: IP地址+VNC端口（如：192.168.1.188：1）</li>
 </ul>
 <p>效果如下：<br><figure class="image-bubble">
@@ -289,7 +289,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2017-12-24T15:17:59.981Z" itemprop="dateUpdated">2017-12-24 23:17:59</time>
+    最后更新时间：<time datetime="2018-03-08T16:55:19.245Z" itemprop="dateUpdated">2018-03-09 00:55:19</time>
 </span><br>
 
 
