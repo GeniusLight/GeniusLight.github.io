@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://geniuslight.github.io/"/>
-  <updated>2018-03-08T17:34:25.455Z</updated>
+  <updated>2018-03-12T23:38:56.565Z</updated>
   <id>https://geniuslight.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>vncserver多用户启动</title>
+    <link href="https://geniuslight.github.io/2018/03/13/vncserver%E5%A4%9A%E7%94%A8%E6%88%B7%E5%90%AF%E5%8A%A8/"/>
+    <id>https://geniuslight.github.io/2018/03/13/vncserver多用户启动/</id>
+    <published>2018-03-12T20:01:51.000Z</published>
+    <updated>2018-03-12T23:38:56.565Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="管理多个用户"><a href="#管理多个用户" class="headerlink" title="管理多个用户"></a>管理多个用户</h1><h2 id="使用su指令（py脚本中使用）"><a href="#使用su指令（py脚本中使用）" class="headerlink" title="使用su指令（py脚本中使用）"></a>使用su指令（py脚本中使用）</h2><p>[root@www ~]# su [-lm][-c 指令] [username]<br>选项与参数：</p><p>-  ：单纯使用 - 如‘ su - ’代表使用 login-shell 的变数档案读取方式来登入系统；</p><p>若使用者名称没有加上去，则代表切换为 root 的身份。<br>-l  ：与 - 类似，但后面需要加欲切换的使用者帐号！也是 login-shell 的方式。<br>-m  ：-m 与 -p 是一样的，表示‘使用目前的环境设定，而不读取新使用者的设定档’<br>-c  ：仅进行一次指令，所以 -c 后面可以加上指令喔！</p><h2 id="使用脚本管理多用户"><a href="#使用脚本管理多用户" class="headerlink" title="使用脚本管理多用户"></a>使用脚本管理多用户</h2><p>在/etc/文件下，新建vncserver文件夹，在vncserver文件夹下新增两个文件startvnc.py和startvnc.sh,两个文件内容分别为：</p><p>startvnc.py：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> os  </span><br><span class="line">  </span><br><span class="line">user_list=[<span class="string">"wst"</span>,<span class="string">"nju_zhao"</span>,<span class="string">"xuxudong"</span>,<span class="string">"visitor"</span>,<span class="string">"shaoyidi"</span>] </span><br><span class="line"><span class="comment">#不同用户</span></span><br><span class="line">i = <span class="number">1</span>  </span><br><span class="line">  </span><br><span class="line">depth = <span class="string">"16"</span>  </span><br><span class="line">  </span><br><span class="line">geometry_list = [<span class="string">"1920x1080"</span>, <span class="string">"1920x1080"</span>, <span class="string">"1920x1080"</span>, <span class="string">"1920x1080"</span>, <span class="string">"2880x1800"</span>] </span><br><span class="line"><span class="comment">#不同分辨率</span></span><br><span class="line">  </span><br><span class="line">name = <span class="string">"vncserver"</span>  </span><br><span class="line"></span><br><span class="line">user_config = zip(user_list, geometry_list)</span><br><span class="line"></span><br><span class="line"><span class="comment">#构建不同用户和对应端口的指令</span></span><br><span class="line"><span class="keyword">for</span> name, geometry <span class="keyword">in</span> user_config:  </span><br><span class="line">    options = <span class="string">"-name %s -depth %s -geometry %s :%d"</span> % (name, depth, geometry, i)  </span><br><span class="line">    print(options)  </span><br><span class="line">    i = i + <span class="number">1</span>  </span><br><span class="line">    cmd = <span class="string">"su %s -c '/usr/bin/vncserver %s'"</span> % (name, options)  </span><br><span class="line">    print(cmd)  </span><br><span class="line">    os.system(cmd)</span><br></pre></td></tr></table></figure><p>startvnc.sh:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash  </span></span><br><span class="line">python /etc/vncserver/startvnc.py  </span><br><span class="line"><span class="built_in">exit</span> 0</span><br></pre></td></tr></table></figure><h1 id="添加开机执行"><a href="#添加开机执行" class="headerlink" title="添加开机执行"></a>添加开机执行</h1><p>给文件执行权限</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">chmod</span> + <span class="selector-tag">x</span>  <span class="selector-tag">startvnc</span><span class="selector-class">.sh</span></span><br></pre></td></tr></table></figure><p>将命令添加到/etc/rc.local的末尾，以执行文件，添加内容为</p><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">sh</span> /etc/vncserver/startvnc.<span class="keyword">sh</span></span><br></pre></td></tr></table></figure><p><a href="http://blog.csdn.net/w113691/article/details/78407779" target="_blank" rel="noopener">参考：Ubuntu 14.04 解决VNC server 自启动</a></p><p><a href="https://doc.plob.org/vbird_linux/" target="_blank" rel="noopener">参考：鸟哥的linux私房菜</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;管理多个用户&quot;&gt;&lt;a href=&quot;#管理多个用户&quot; class=&quot;headerlink&quot; title=&quot;管理多个用户&quot;&gt;&lt;/a&gt;管理多个用户&lt;/h1&gt;&lt;h2 id=&quot;使用su指令（py脚本中使用）&quot;&gt;&lt;a href=&quot;#使用su指令（py脚本中使用）&quot; class
+      
+    
+    </summary>
+    
+      <category term="服务器运维" scheme="https://geniuslight.github.io/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%90%E7%BB%B4/"/>
+    
+    
+      <category term="Linux" scheme="https://geniuslight.github.io/tags/Linux/"/>
+    
+      <category term="运维" scheme="https://geniuslight.github.io/tags/%E8%BF%90%E7%BB%B4/"/>
+    
+  </entry>
   
   <entry>
     <title>nova服务器管理</title>
