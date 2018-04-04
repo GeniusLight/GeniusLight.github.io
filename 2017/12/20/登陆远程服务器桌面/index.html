@@ -28,14 +28,13 @@
 <meta property="og:site_name" content="回忆积木小屋">
 <meta property="og:description" content="解决方案   序号 方案 简单区别     方案一 Xmanager 1.VNC连接时及时突然中断（比如断网），不影响操作进行；2.不需要在服务器上装软件，需要在你的电脑上装相应软件，使用SSH协议；3.正版要钱   方案二 VNC(Virtual Network Computing) 1.本地操作突然中断，服务器端操作也中断；2.在服务器端装vncserver（有很多版本选择）,你的电脑装vnc">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://img.blog.csdn.net/20171127185425460?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2FuZ19zaGVuX3Rhbw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 <meta property="og:image" content="http://img.blog.csdn.net/20171127185748696?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2FuZ19zaGVuX3Rhbw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 <meta property="og:image" content="http://img.blog.csdn.net/20171127190313823?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2FuZ19zaGVuX3Rhbw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:updated_time" content="2018-03-08T16:55:19.245Z">
+<meta property="og:updated_time" content="2018-04-04T00:19:27.038Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="登陆远程服务器桌面">
 <meta name="twitter:description" content="解决方案   序号 方案 简单区别     方案一 Xmanager 1.VNC连接时及时突然中断（比如断网），不影响操作进行；2.不需要在服务器上装软件，需要在你的电脑上装相应软件，使用SSH协议；3.正版要钱   方案二 VNC(Virtual Network Computing) 1.本地操作突然中断，服务器端操作也中断；2.在服务器端装vncserver（有很多版本选择）,你的电脑装vnc">
-<meta name="twitter:image" content="http://img.blog.csdn.net/20171127185425460?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2FuZ19zaGVuX3Rhbw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20171127185748696?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2FuZ19zaGVuX3Rhbw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
     
         <link rel="alternate" type="application/atom+xml" title="回忆积木小屋" href="/atom.xml">
     
@@ -231,19 +230,13 @@
 <li>执行<code>apt-get install gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal</code>，安装gnome窗口管理器</li>
 <li>需要修改.vnc/xstartup配置文件。修改为下面的样子：</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> XKL_XMODMAP_DISABLE=1</span><br><span class="line"><span class="built_in">unset</span> SESSION_MANAGER</span><br><span class="line"><span class="built_in">unset</span> DBUS_SESSION_BUS_ADDRESS</span><br><span class="line"></span><br><span class="line">gnome-panel &amp;</span><br><span class="line">gnome-settings-daemon &amp;</span><br><span class="line">metacity &amp;</span><br><span class="line">nautilus &amp;</span><br><span class="line">gnome-terminal &amp;</span><br><span class="line">vncconfig &amp;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"></span><br><span class="line">exportXKL_XMODMAP_DISABLE=1</span><br><span class="line">unsetSESSION_MANAGER</span><br><span class="line">unsetDBUS_SESSION_BUS_ADDRESS</span><br><span class="line"></span><br><span class="line">gnome-panel &amp;</span><br><span class="line">gnome-settings-daemon &amp;</span><br><span class="line">metacity &amp;</span><br><span class="line">nautilus &amp;</span><br><span class="line">gnome-terminal &amp;</span><br><span class="line">vncconfig &amp;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>执行<code>apt-get install vnc4server</code>，安装vnc server</li>
-<li>执行<code>vncserver --geometry 1920×1080  :1</code>，再次启动vnc server，其中1920X1080是屏幕分辨率，可自行修改<br>thEast)</li>
+<li>执行<code>vncserver -geometry 1920×1080  :1</code>，再次启动vnc server，其中1920X1080是屏幕分辨率，可自行修改</li>
 <li>远程运行vnc的客户端（如：VNC Viewer）: IP地址+VNC端口（如：192.168.1.188：1）</li>
 </ul>
-<p>效果如下（桌面崩溃了，网上找的效果图）：<br><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="http://img.blog.csdn.net/20171127185425460?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2FuZ19zaGVuX3Rhbw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="崩溃的桌面" title="">
-                </div>
-                <div class="image-caption">崩溃的桌面</div>
-            </figure></p>
+<p>关闭服务器端vncserver命令为<code>vncserver -kill :i（i为你需要关闭的vnc端口）</code></p>
 <h2 id="2-安装xfce4"><a href="#2-安装xfce4" class="headerlink" title="2.安装xfce4"></a>2.安装xfce4</h2><ul>
 <li>执行<code>apt-get install vnc4server</code>，安装vnc server</li>
 <li>执行<code>vncserver</code>，按照提示设置VNC访问时的密码</li>
@@ -289,7 +282,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2018-03-08T16:55:19.245Z" itemprop="dateUpdated">2018-03-09 00:55:19</time>
+    最后更新时间：<time datetime="2018-04-04T00:19:27.038Z" itemprop="dateUpdated">2018-04-04 08:19:27</time>
 </span><br>
 
 
@@ -368,13 +361,20 @@
 <nav class="post-nav flex-row flex-justify-between">
   
     <div class="waves-block waves-effect prev">
-      <a href="/2017/12/20/Linux系统换源/" id="post-prev" class="post-nav-link">
+      <a href="/2017/12/20/建站记录/" id="post-prev" class="post-nav-link">
         <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">Linux系统换源</h4>
+        <h4 class="title">建站记录</h4>
       </a>
     </div>
   
 
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/12/20/Linux系统换源/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Linux系统换源</h4>
+      </a>
+    </div>
   
 </nav>
 
