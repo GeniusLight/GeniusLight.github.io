@@ -204,6 +204,70 @@ linux界两大主流：RPM和DPKGLinux 开发商先在固定的硬件平台与�
 
         </li>
     
+        <li class="post-list-item fade">
+            <article id="post-登陆远程服务器桌面"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-12-20 16:19:34" datetime="2017-12-20T08:19:34.000Z"  itemprop="datePublished">2017-12-20</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/服务器运维/">服务器运维</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/12/20/登陆远程服务器桌面/">登陆远程服务器桌面</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        解决方案
+
+
+序号
+方案
+简单区别
+
+
+
+
+方案一
+Xmanager
+1.VNC连接时及时突然中断（比如断网），不影响操作进行；2.不需要在服务器上装软件，需要在你的电脑上装相应软件，使用SSH协议；3.正版要钱
+
+
+方案二
+VNC(Virtual Network Computing)
+1.本地操作突然中断，服务器端操作也中断；2.在服务器端装vncserver（有很多版本选择）,你的电脑装...
+    
+
+        <a href="/2017/12/20/登陆远程服务器桌面/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/运维/">运维</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
     </ul>
 
     
@@ -342,7 +406,7 @@ var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
             document.title = '已离开此页面！';
             clearTimeout(titleTime);
         } else {
-            document.title = '(つェ⊂)咦!又回来了!';
+            document.title = '已返回此页面';
             titleTime = setTimeout(function() {
                 document.title = OriginTitile;
             },2000);
