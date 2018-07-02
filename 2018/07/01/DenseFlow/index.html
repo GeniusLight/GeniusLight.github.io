@@ -20,18 +20,18 @@
     
     
     <meta name="keywords" content="视频处理,光流">
-    <meta name="description" content="编译dense flow安装dense flow，用于提取光流特征，尝试安装opencv3.1后，安装dense flow失败，所以选择安装opencv2.4.13。源码地址 编译OpenCV2.4.1312345678# 下载源码wget https://github.com/opencv/opencv/archive/2.4.13.6.zip# 解压编译unzip 2.4.13.6.zip c">
+    <meta name="description" content="编译安装dense flow，用于提取光流特征，尝试安装opencv3.1后，安装dense flow失败，所以选择安装opencv2.4.13。源码地址 编译OpenCV2.4.1312345678# 下载源码wget https://github.com/opencv/opencv/archive/2.4.13.6.zip# 解压编译unzip 2.4.13.6.zip cd opencv-2">
 <meta name="keywords" content="视频处理,光流">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Dense Flow">
 <meta property="og:url" content="https://geniuslight.github.io/2018/07/01/DenseFlow/index.html">
 <meta property="og:site_name" content="回忆积木小屋">
-<meta property="og:description" content="编译dense flow安装dense flow，用于提取光流特征，尝试安装opencv3.1后，安装dense flow失败，所以选择安装opencv2.4.13。源码地址 编译OpenCV2.4.1312345678# 下载源码wget https://github.com/opencv/opencv/archive/2.4.13.6.zip# 解压编译unzip 2.4.13.6.zip c">
+<meta property="og:description" content="编译安装dense flow，用于提取光流特征，尝试安装opencv3.1后，安装dense flow失败，所以选择安装opencv2.4.13。源码地址 编译OpenCV2.4.1312345678# 下载源码wget https://github.com/opencv/opencv/archive/2.4.13.6.zip# 解压编译unzip 2.4.13.6.zip cd opencv-2">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-02T08:59:51.862Z">
+<meta property="og:updated_time" content="2018-07-02T09:13:37.710Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Dense Flow">
-<meta name="twitter:description" content="编译dense flow安装dense flow，用于提取光流特征，尝试安装opencv3.1后，安装dense flow失败，所以选择安装opencv2.4.13。源码地址 编译OpenCV2.4.1312345678# 下载源码wget https://github.com/opencv/opencv/archive/2.4.13.6.zip# 解压编译unzip 2.4.13.6.zip c">
+<meta name="twitter:description" content="编译安装dense flow，用于提取光流特征，尝试安装opencv3.1后，安装dense flow失败，所以选择安装opencv2.4.13。源码地址 编译OpenCV2.4.1312345678# 下载源码wget https://github.com/opencv/opencv/archive/2.4.13.6.zip# 解压编译unzip 2.4.13.6.zip cd opencv-2">
     
         <link rel="alternate" type="application/atom+xml" title="回忆积木小屋" href="/atom.xml">
     
@@ -166,7 +166,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#编译dense-flow"><span class="post-toc-number">1.</span> <span class="post-toc-text"><a href="#&#x7F16;&#x8BD1;dense-flow" class="headerlink" title="&#x7F16;&#x8BD1;dense flow"></a>&#x7F16;&#x8BD1;dense flow</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#编译OpenCV2-4-13"><span class="post-toc-number">1.1.</span> <span class="post-toc-text"><a href="#&#x7F16;&#x8BD1;OpenCV2-4-13" class="headerlink" title="&#x7F16;&#x8BD1;OpenCV2.4.13"></a>&#x7F16;&#x8BD1;OpenCV2.4.13</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#编译dense-flow-1"><span class="post-toc-number">1.2.</span> <span class="post-toc-text"><a href="#&#x7F16;&#x8BD1;dense-flow-1" class="headerlink" title="&#x7F16;&#x8BD1;dense flow"></a>&#x7F16;&#x8BD1;dense flow</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#使用dense-flow"><span class="post-toc-number">2.</span> <span class="post-toc-text"><a href="#&#x4F7F;&#x7528;dense-flow" class="headerlink" title="&#x4F7F;&#x7528;dense flow"></a>&#x4F7F;&#x7528;dense flow</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#编译"><span class="post-toc-number">1.</span> <span class="post-toc-text"><a href="#&#x7F16;&#x8BD1;" class="headerlink" title="&#x7F16;&#x8BD1;"></a>&#x7F16;&#x8BD1;</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#编译OpenCV2-4-13"><span class="post-toc-number">1.1.</span> <span class="post-toc-text"><a href="#&#x7F16;&#x8BD1;OpenCV2-4-13" class="headerlink" title="&#x7F16;&#x8BD1;OpenCV2.4.13"></a>&#x7F16;&#x8BD1;OpenCV2.4.13</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#编译dense-flow"><span class="post-toc-number">1.2.</span> <span class="post-toc-text"><a href="#&#x7F16;&#x8BD1;dense-flow" class="headerlink" title="&#x7F16;&#x8BD1;dense flow"></a>&#x7F16;&#x8BD1;dense flow</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#使用dense-flow"><span class="post-toc-number">2.</span> <span class="post-toc-text"><a href="#&#x4F7F;&#x7528;dense-flow" class="headerlink" title="&#x4F7F;&#x7528;dense flow"></a>&#x4F7F;&#x7528;dense flow</span></a></li></ol>
         </nav>
     </aside>
     
@@ -191,10 +191,10 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <h1 id="编译dense-flow"><a href="#编译dense-flow" class="headerlink" title="编译dense flow"></a>编译dense flow</h1><p>安装dense flow，用于提取光流特征，尝试安装opencv3.1后，安装dense flow失败，所以选择安装opencv2.4.13。<a href="https://github.com/yjxiong/dense_flow" target="_blank" rel="noopener">源码地址</a></p>
+            <h1 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h1><p>安装dense flow，用于提取光流特征，尝试安装opencv3.1后，安装dense flow失败，所以选择安装opencv2.4.13。<a href="https://github.com/yjxiong/dense_flow" target="_blank" rel="noopener">源码地址</a></p>
 <h2 id="编译OpenCV2-4-13"><a href="#编译OpenCV2-4-13" class="headerlink" title="编译OpenCV2.4.13"></a>编译OpenCV2.4.13</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 下载源码</span><br><span class="line">wget https://github.com/opencv/opencv/archive/2.4.13.6.zip</span><br><span class="line"><span class="meta">#</span> 解压编译</span><br><span class="line">unzip 2.4.13.6.zip </span><br><span class="line">cd opencv-2.4.13.6/</span><br><span class="line">mkdir build &amp;&amp; cd build</span><br><span class="line">cmake -D CMAKE_BUILD_TYPE=RELEASE -D WITH_TBB=ON  -D WITH_V4L=ON ..</span><br><span class="line">make -j32</span><br></pre></td></tr></table></figure>
-<h2 id="编译dense-flow-1"><a href="#编译dense-flow-1" class="headerlink" title="编译dense flow"></a>编译dense flow</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 编译</span><br><span class="line">cd dense_flow/</span><br><span class="line">mkdir build &amp;&amp; cd build</span><br><span class="line">OpenCV_DIR=.../your_opencv_path/build/ cmake .. -DCUDA_USE_STATIC_CUDA_RUNTIME=OFF</span><br><span class="line">make -j</span><br></pre></td></tr></table></figure>
-<p>生成可执行文件：extract_cpu    extract_gpu    extract_warp_gpu</p>
+<h2 id="编译dense-flow"><a href="#编译dense-flow" class="headerlink" title="编译dense flow"></a>编译dense flow</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 编译</span><br><span class="line">cd dense_flow/</span><br><span class="line">mkdir build &amp;&amp; cd build</span><br><span class="line">OpenCV_DIR=.../your_opencv_path/build/ cmake .. -DCUDA_USE_STATIC_CUDA_RUNTIME=OFF</span><br><span class="line">make -j</span><br></pre></td></tr></table></figure>
+<p>生成可执行文件：<code>extract_cpu</code>     <code>extract_gpu</code>     <code>extract_warp_gpu</code></p>
 <h1 id="使用dense-flow"><a href="#使用dense-flow" class="headerlink" title="使用dense flow"></a>使用dense flow</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./extract_gpu -f test.avi -x tmp/flow_x -y tmp/flow_y -i tmp/image -b 20 -t 1 -d 0 -s 1 -o dir</span><br></pre></td></tr></table></figure>
 <ul>
 <li><code>test.avi</code>: 输入视频文件</li>
@@ -209,7 +209,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2018-07-02T08:59:51.862Z" itemprop="dateUpdated">2018-07-02 16:59:51</time>
+    最后更新时间：<time datetime="2018-07-02T09:13:37.710Z" itemprop="dateUpdated">2018-07-02 17:13:37</time>
 </span><br>
 
 
