@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>Dense Flow | 回忆积木小屋 | 多一点时间多一点爱</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="视频处理,光流">
+    <meta name="description" content="编译dense flow安装dense flow，用于提取光流特征，尝试安装opencv3.1后，安装dense flow失败，所以选择安装opencv2.4.13。源码地址 编译OpenCV2.4.1312345678# 下载源码wget https://github.com/opencv/opencv/archive/2.4.13.6.zip# 解压编译unzip 2.4.13.6.zip c">
+<meta name="keywords" content="视频处理,光流">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Dense Flow">
+<meta property="og:url" content="https://geniuslight.github.io/2018/07/01/DenseFlow/index.html">
+<meta property="og:site_name" content="回忆积木小屋">
+<meta property="og:description" content="编译dense flow安装dense flow，用于提取光流特征，尝试安装opencv3.1后，安装dense flow失败，所以选择安装opencv2.4.13。源码地址 编译OpenCV2.4.1312345678# 下载源码wget https://github.com/opencv/opencv/archive/2.4.13.6.zip# 解压编译unzip 2.4.13.6.zip c">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-07-02T08:59:51.862Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Dense Flow">
+<meta name="twitter:description" content="编译dense flow安装dense flow，用于提取光流特征，尝试安装opencv3.1后，安装dense flow失败，所以选择安装opencv2.4.13。源码地址 编译OpenCV2.4.1312345678# 下载源码wget https://github.com/opencv/opencv/archive/2.4.13.6.zip# 解压编译unzip 2.4.13.6.zip c">
+    
+        <link rel="alternate" type="application/atom+xml" title="回忆积木小屋" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">light</h5>
+          <a href="mailto:18362927193@163.com" title="18362927193@163.com" class="mail">18362927193@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories/随笔"  >
+                <i class="icon icon-lg icon-pencil"></i>
+                随笔
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/GeniusLight" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Dense Flow</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Dense Flow</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-07-01T08:00:42.000Z" itemprop="datePublished" class="page-time">
+  2018-07-01
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/视频处理/">视频处理</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#编译dense-flow"><span class="post-toc-number">1.</span> <span class="post-toc-text"><a href="#&#x7F16;&#x8BD1;dense-flow" class="headerlink" title="&#x7F16;&#x8BD1;dense flow"></a>&#x7F16;&#x8BD1;dense flow</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#编译OpenCV2-4-13"><span class="post-toc-number">1.1.</span> <span class="post-toc-text"><a href="#&#x7F16;&#x8BD1;OpenCV2-4-13" class="headerlink" title="&#x7F16;&#x8BD1;OpenCV2.4.13"></a>&#x7F16;&#x8BD1;OpenCV2.4.13</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#编译dense-flow-1"><span class="post-toc-number">1.2.</span> <span class="post-toc-text"><a href="#&#x7F16;&#x8BD1;dense-flow-1" class="headerlink" title="&#x7F16;&#x8BD1;dense flow"></a>&#x7F16;&#x8BD1;dense flow</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#使用dense-flow"><span class="post-toc-number">2.</span> <span class="post-toc-text"><a href="#&#x4F7F;&#x7528;dense-flow" class="headerlink" title="&#x4F7F;&#x7528;dense flow"></a>&#x4F7F;&#x7528;dense flow</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-DenseFlow"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Dense Flow</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-07-01 16:00:42" datetime="2018-07-01T08:00:42.000Z"  itemprop="datePublished">2018-07-01</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/视频处理/">视频处理</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="编译dense-flow"><a href="#编译dense-flow" class="headerlink" title="编译dense flow"></a>编译dense flow</h1><p>安装dense flow，用于提取光流特征，尝试安装opencv3.1后，安装dense flow失败，所以选择安装opencv2.4.13。<a href="https://github.com/yjxiong/dense_flow" target="_blank" rel="noopener">源码地址</a></p>
+<h2 id="编译OpenCV2-4-13"><a href="#编译OpenCV2-4-13" class="headerlink" title="编译OpenCV2.4.13"></a>编译OpenCV2.4.13</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 下载源码</span><br><span class="line">wget https://github.com/opencv/opencv/archive/2.4.13.6.zip</span><br><span class="line"><span class="meta">#</span> 解压编译</span><br><span class="line">unzip 2.4.13.6.zip </span><br><span class="line">cd opencv-2.4.13.6/</span><br><span class="line">mkdir build &amp;&amp; cd build</span><br><span class="line">cmake -D CMAKE_BUILD_TYPE=RELEASE -D WITH_TBB=ON  -D WITH_V4L=ON ..</span><br><span class="line">make -j32</span><br></pre></td></tr></table></figure>
+<h2 id="编译dense-flow-1"><a href="#编译dense-flow-1" class="headerlink" title="编译dense flow"></a>编译dense flow</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 编译</span><br><span class="line">cd dense_flow/</span><br><span class="line">mkdir build &amp;&amp; cd build</span><br><span class="line">OpenCV_DIR=.../your_opencv_path/build/ cmake .. -DCUDA_USE_STATIC_CUDA_RUNTIME=OFF</span><br><span class="line">make -j</span><br></pre></td></tr></table></figure>
+<p>生成可执行文件：extract_cpu    extract_gpu    extract_warp_gpu</p>
+<h1 id="使用dense-flow"><a href="#使用dense-flow" class="headerlink" title="使用dense flow"></a>使用dense flow</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./extract_gpu -f test.avi -x tmp/flow_x -y tmp/flow_y -i tmp/image -b 20 -t 1 -d 0 -s 1 -o dir</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>test.avi</code>: 输入视频文件</li>
+<li><code>tmp</code>: 输出RGB文件和光流文件</li>
+<li><code>dir</code>: 输出到文件夹。选择<code>zip</code>，会输出到zip文件</li>
+</ul>
+<p>提取warp flow，使用以下命令</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./extract_warp_gpu -f test<span class="selector-class">.avi</span> -x tmp/flow_x -y tmp/flow_y -<span class="selector-tag">i</span> tmp/image -<span class="selector-tag">b</span> <span class="number">20</span> -t <span class="number">1</span> -d <span class="number">0</span> -s <span class="number">1</span> -o dir</span><br></pre></td></tr></table></figure>
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-07-02T08:59:51.862Z" itemprop="dateUpdated">2018-07-02 16:59:51</time>
+</span><br>
+
+
+        
+        不积跬步，无以至千里
+        
+    </div>
+    <footer>
+        <a href="https://geniuslight.github.io">
+            <img src="/img/avatar.jpg" alt="light">
+            light
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/光流/">光流</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/视频处理/">视频处理</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://geniuslight.github.io/2018/07/01/DenseFlow/&title=《Dense Flow》 — 回忆积木小屋&pic=https://geniuslight.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://geniuslight.github.io/2018/07/01/DenseFlow/&title=《Dense Flow》 — 回忆积木小屋&source=多一点时间多一点爱" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://geniuslight.github.io/2018/07/01/DenseFlow/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Dense Flow》 — 回忆积木小屋&url=https://geniuslight.github.io/2018/07/01/DenseFlow/&via=https://geniuslight.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://geniuslight.github.io/2018/07/01/DenseFlow/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/06/29/ReadedPaperSummary1/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">文献阅读整理1</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>light &copy; 2017 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://geniuslight.github.io/2018/07/01/DenseFlow/&title=《Dense Flow》 — 回忆积木小屋&pic=https://geniuslight.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://geniuslight.github.io/2018/07/01/DenseFlow/&title=《Dense Flow》 — 回忆积木小屋&source=多一点时间多一点爱" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://geniuslight.github.io/2018/07/01/DenseFlow/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Dense Flow》 — 回忆积木小屋&url=https://geniuslight.github.io/2018/07/01/DenseFlow/&via=https://geniuslight.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://geniuslight.github.io/2018/07/01/DenseFlow/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJUlEQVR42u3aS3LDIBAFQN//0soBEuQ3A0qVoFm5YhloLV6Gz+cTt+tXS565f/6+h88TDQMD47WMZPjqt7/7H33ujfsHFQMD4wDGKMFGzyTD5zGa9PNlzhgYGBitcjCPZgwMDIynA3dmgXofzRgYGBjVxWR1cvm3MwtdDAyMExh5XP7/50fONzAwMF7FuIptZlrJ5K5Ww8DA2JuRB9zajbOkZCwviTEwMA5g5Jcnqlt11U29/LfNN42BgfFCRnXq8wcD+QZcudzEwMDYlJEXajmvGpQL4h4DA2NrRh6IvUsS1ddRjWYMDIwTGPNTrP525krH8BVgYGAcwOgVgguSPt5o+/JvAAMDY1PG/OHl/DWLvCQd9oyBgXEAYyZwkxjtLWvLy1cMDIytGdXjgZmg7AX0lxeKgYGxNSM6FAyiOYnIfMGcv5rCDiIGBsbLGTNFW3Up2+stKkkxMDA2ZSRbadWLX8nCuHdIMOwBAwNja0YvRqvXL6r9LKttMTAwNmIkA/eKvLzQrP59eGcEAwNja8aqYm7tUWgyOgYGxmmMXthdt616mSwHDwMXAwNjI8ZVbDNLzTxMy8GNgYGxNaN6zyqZaO8gc2bjDwMD4wRGHrJVXrKJ1lu4Dg8GMDAwtmb0gq839QfX4hgYGBjFrquFYDWapwIXAwNja8bM8WT1Alnh6AIDA+MARu8woFnGLUpLDAyMcxj5hKoTXTWJ+SsaGBgYr2X8AOTHapgtnxe3AAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '已离开此页面！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '已返回此页面';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
