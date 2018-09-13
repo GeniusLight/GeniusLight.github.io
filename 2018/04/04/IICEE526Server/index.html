@@ -20,18 +20,20 @@
     
     
     <meta name="keywords" content="Linux,运维">
-    <meta name="description" content="服务器的硬件配置和使用注意 GPU：GTX1080TI AERO 11G（4块） CPU：Intel E5-2678V3 （2块） 内存：DDR4 RECC 共64G 硬盘：机械硬盘 4T（2块）SSD 500G  使用时候个人觉得要注意：  先观察GPU有没有人在使用，如果贸然使用，可能会杀死别人在跑的程序 安装软件，注意选择版本，比如tensorfolw不同版本对cuda和cudnn的版本要求">
+    <meta name="description" content="服务器的硬件配置和使用注意 GPU：GTX1080TI AERO 11G（4块） CPU：Intel E5-2678 V3 （2块） 内存：DDR4 RECC 共64G 硬盘：机械硬盘 4T（2块）SSD 500G  使用时候个人觉得要注意：  先观察GPU有没有人在使用，如果贸然使用，可能会杀死别人在跑的程序 安装软件，注意选择版本，比如tensorfolw不同版本对cuda和cudnn的版本要">
 <meta name="keywords" content="Linux,运维">
 <meta property="og:type" content="article">
 <meta property="og:title" content="IICEE526服务器管理">
 <meta property="og:url" content="https://geniuslight.github.io/2018/04/04/IICEE526Server/index.html">
 <meta property="og:site_name" content="回忆积木小屋">
-<meta property="og:description" content="服务器的硬件配置和使用注意 GPU：GTX1080TI AERO 11G（4块） CPU：Intel E5-2678V3 （2块） 内存：DDR4 RECC 共64G 硬盘：机械硬盘 4T（2块）SSD 500G  使用时候个人觉得要注意：  先观察GPU有没有人在使用，如果贸然使用，可能会杀死别人在跑的程序 安装软件，注意选择版本，比如tensorfolw不同版本对cuda和cudnn的版本要求">
+<meta property="og:description" content="服务器的硬件配置和使用注意 GPU：GTX1080TI AERO 11G（4块） CPU：Intel E5-2678 V3 （2块） 内存：DDR4 RECC 共64G 硬盘：机械硬盘 4T（2块）SSD 500G  使用时候个人觉得要注意：  先观察GPU有没有人在使用，如果贸然使用，可能会杀死别人在跑的程序 安装软件，注意选择版本，比如tensorfolw不同版本对cuda和cudnn的版本要">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-29T08:52:16.818Z">
+<meta property="og:image" content="https://s1.ax2x.com/2018/09/13/5FyL7z.md.png">
+<meta property="og:updated_time" content="2018-09-13T11:57:56.366Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="IICEE526服务器管理">
-<meta name="twitter:description" content="服务器的硬件配置和使用注意 GPU：GTX1080TI AERO 11G（4块） CPU：Intel E5-2678V3 （2块） 内存：DDR4 RECC 共64G 硬盘：机械硬盘 4T（2块）SSD 500G  使用时候个人觉得要注意：  先观察GPU有没有人在使用，如果贸然使用，可能会杀死别人在跑的程序 安装软件，注意选择版本，比如tensorfolw不同版本对cuda和cudnn的版本要求">
+<meta name="twitter:description" content="服务器的硬件配置和使用注意 GPU：GTX1080TI AERO 11G（4块） CPU：Intel E5-2678 V3 （2块） 内存：DDR4 RECC 共64G 硬盘：机械硬盘 4T（2块）SSD 500G  使用时候个人觉得要注意：  先观察GPU有没有人在使用，如果贸然使用，可能会杀死别人在跑的程序 安装软件，注意选择版本，比如tensorfolw不同版本对cuda和cudnn的版本要">
+<meta name="twitter:image" content="https://s1.ax2x.com/2018/09/13/5FyL7z.md.png">
     
         <link rel="alternate" type="application/atom+xml" title="回忆积木小屋" href="/atom.xml">
     
@@ -166,7 +168,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#服务器的硬件配置和使用注意"><span class="post-toc-number">1.</span> <span class="post-toc-text"><a href="#&#x670D;&#x52A1;&#x5668;&#x7684;&#x786C;&#x4EF6;&#x914D;&#x7F6E;&#x548C;&#x4F7F;&#x7528;&#x6CE8;&#x610F;" class="headerlink" title="&#x670D;&#x52A1;&#x5668;&#x7684;&#x786C;&#x4EF6;&#x914D;&#x7F6E;&#x548C;&#x4F7F;&#x7528;&#x6CE8;&#x610F;"></a>&#x670D;&#x52A1;&#x5668;&#x7684;&#x786C;&#x4EF6;&#x914D;&#x7F6E;&#x548C;&#x4F7F;&#x7528;&#x6CE8;&#x610F;</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#服务器管理"><span class="post-toc-number">2.</span> <span class="post-toc-text"><a href="#&#x670D;&#x52A1;&#x5668;&#x7BA1;&#x7406;" class="headerlink" title="&#x670D;&#x52A1;&#x5668;&#x7BA1;&#x7406;"></a>&#x670D;&#x52A1;&#x5668;&#x7BA1;&#x7406;</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#用户管理"><span class="post-toc-number">2.1.</span> <span class="post-toc-text"><a href="#&#x7528;&#x6237;&#x7BA1;&#x7406;" class="headerlink" title="&#x7528;&#x6237;&#x7BA1;&#x7406;"></a>&#x7528;&#x6237;&#x7BA1;&#x7406;</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#磁盘管理"><span class="post-toc-number">2.2.</span> <span class="post-toc-text"><a href="#&#x78C1;&#x76D8;&#x7BA1;&#x7406;" class="headerlink" title="&#x78C1;&#x76D8;&#x7BA1;&#x7406;"></a>&#x78C1;&#x76D8;&#x7BA1;&#x7406;</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#服务器连接"><span class="post-toc-number">3.</span> <span class="post-toc-text"><a href="#&#x670D;&#x52A1;&#x5668;&#x8FDE;&#x63A5;" class="headerlink" title="&#x670D;&#x52A1;&#x5668;&#x8FDE;&#x63A5;"></a>&#x670D;&#x52A1;&#x5668;&#x8FDE;&#x63A5;</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#跑去办公室"><span class="post-toc-number">3.1.</span> <span class="post-toc-text"><a href="#&#x8DD1;&#x53BB;&#x529E;&#x516C;&#x5BA4;" class="headerlink" title="&#x8DD1;&#x53BB;&#x529E;&#x516C;&#x5BA4;"></a>&#x8DD1;&#x53BB;&#x529E;&#x516C;&#x5BA4;</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#ssh连接"><span class="post-toc-number">3.2.</span> <span class="post-toc-text"><a href="#ssh&#x8FDE;&#x63A5;" class="headerlink" title="ssh&#x8FDE;&#x63A5;"></a>ssh&#x8FDE;&#x63A5;</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#vnc连接（暂时不支持）"><span class="post-toc-number">3.3.</span> <span class="post-toc-text"><a href="#vnc&#x8FDE;&#x63A5;&#xFF08;&#x6682;&#x65F6;&#x4E0D;&#x652F;&#x6301;&#xFF09;" class="headerlink" title="vnc&#x8FDE;&#x63A5;&#xFF08;&#x6682;&#x65F6;&#x4E0D;&#x652F;&#x6301;&#xFF09;"></a>vnc&#x8FDE;&#x63A5;&#xFF08;&#x6682;&#x65F6;&#x4E0D;&#x652F;&#x6301;&#xFF09;</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#管理vnc账号和自动登陆"><span class="post-toc-number">3.3.1.</span> <span class="post-toc-text"><a href="#&#x7BA1;&#x7406;vnc&#x8D26;&#x53F7;&#x548C;&#x81EA;&#x52A8;&#x767B;&#x9646;" class="headerlink" title="&#x7BA1;&#x7406;vnc&#x8D26;&#x53F7;&#x548C;&#x81EA;&#x52A8;&#x767B;&#x9646;"></a>&#x7BA1;&#x7406;vnc&#x8D26;&#x53F7;&#x548C;&#x81EA;&#x52A8;&#x767B;&#x9646;</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#teamviewer连接"><span class="post-toc-number">3.4.</span> <span class="post-toc-text"><a href="#teamviewer&#x8FDE;&#x63A5;" class="headerlink" title="teamviewer&#x8FDE;&#x63A5;"></a>teamviewer&#x8FDE;&#x63A5;</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#在外网使用服务器"><span class="post-toc-number">3.5.</span> <span class="post-toc-text"><a href="#&#x5728;&#x5916;&#x7F51;&#x4F7F;&#x7528;&#x670D;&#x52A1;&#x5668;" class="headerlink" title="&#x5728;&#x5916;&#x7F51;&#x4F7F;&#x7528;&#x670D;&#x52A1;&#x5668;"></a>&#x5728;&#x5916;&#x7F51;&#x4F7F;&#x7528;&#x670D;&#x52A1;&#x5668;</span></a></li></ol></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#服务器的硬件配置和使用注意"><span class="post-toc-number">1.</span> <span class="post-toc-text"><a href="#&#x670D;&#x52A1;&#x5668;&#x7684;&#x786C;&#x4EF6;&#x914D;&#x7F6E;&#x548C;&#x4F7F;&#x7528;&#x6CE8;&#x610F;" class="headerlink" title="&#x670D;&#x52A1;&#x5668;&#x7684;&#x786C;&#x4EF6;&#x914D;&#x7F6E;&#x548C;&#x4F7F;&#x7528;&#x6CE8;&#x610F;"></a>&#x670D;&#x52A1;&#x5668;&#x7684;&#x786C;&#x4EF6;&#x914D;&#x7F6E;&#x548C;&#x4F7F;&#x7528;&#x6CE8;&#x610F;</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#服务器管理"><span class="post-toc-number">2.</span> <span class="post-toc-text"><a href="#&#x670D;&#x52A1;&#x5668;&#x7BA1;&#x7406;" class="headerlink" title="&#x670D;&#x52A1;&#x5668;&#x7BA1;&#x7406;"></a>&#x670D;&#x52A1;&#x5668;&#x7BA1;&#x7406;</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#用户管理"><span class="post-toc-number">2.1.</span> <span class="post-toc-text"><a href="#&#x7528;&#x6237;&#x7BA1;&#x7406;" class="headerlink" title="&#x7528;&#x6237;&#x7BA1;&#x7406;"></a>&#x7528;&#x6237;&#x7BA1;&#x7406;</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#磁盘管理"><span class="post-toc-number">2.2.</span> <span class="post-toc-text"><a href="#&#x78C1;&#x76D8;&#x7BA1;&#x7406;" class="headerlink" title="&#x78C1;&#x76D8;&#x7BA1;&#x7406;"></a>&#x78C1;&#x76D8;&#x7BA1;&#x7406;</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#服务器连接"><span class="post-toc-number">3.</span> <span class="post-toc-text"><a href="#&#x670D;&#x52A1;&#x5668;&#x8FDE;&#x63A5;" class="headerlink" title="&#x670D;&#x52A1;&#x5668;&#x8FDE;&#x63A5;"></a>&#x670D;&#x52A1;&#x5668;&#x8FDE;&#x63A5;</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#ssh连接"><span class="post-toc-number">3.1.</span> <span class="post-toc-text"><a href="#ssh&#x8FDE;&#x63A5;" class="headerlink" title="ssh&#x8FDE;&#x63A5;"></a>ssh&#x8FDE;&#x63A5;</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#vnc连接"><span class="post-toc-number">3.2.</span> <span class="post-toc-text"><a href="#vnc&#x8FDE;&#x63A5;" class="headerlink" title="vnc&#x8FDE;&#x63A5;"></a>vnc&#x8FDE;&#x63A5;</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#GPU使用"><span class="post-toc-number">4.</span> <span class="post-toc-text"><a href="#GPU&#x4F7F;&#x7528;" class="headerlink" title="GPU&#x4F7F;&#x7528;"></a>GPU&#x4F7F;&#x7528;</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#GPU使用情况查看"><span class="post-toc-number">4.1.</span> <span class="post-toc-text"><a href="#GPU&#x4F7F;&#x7528;&#x60C5;&#x51B5;&#x67E5;&#x770B;" class="headerlink" title="GPU&#x4F7F;&#x7528;&#x60C5;&#x51B5;&#x67E5;&#x770B;"></a>GPU&#x4F7F;&#x7528;&#x60C5;&#x51B5;&#x67E5;&#x770B;</span></a></li></ol></li></ol>
         </nav>
     </aside>
     
@@ -193,7 +195,7 @@
         <div class="post-content" id="post-content" itemprop="postContent">
             <h1 id="服务器的硬件配置和使用注意"><a href="#服务器的硬件配置和使用注意" class="headerlink" title="服务器的硬件配置和使用注意"></a>服务器的硬件配置和使用注意</h1><ul>
 <li>GPU：GTX1080TI AERO 11G（4块）</li>
-<li>CPU：Intel E5-2678V3 （2块）</li>
+<li>CPU：Intel E5-2678 V3 （2块）</li>
 <li>内存：DDR4 RECC 共64G</li>
 <li>硬盘：机械硬盘 4T（2块）SSD 500G</li>
 </ul>
@@ -207,27 +209,32 @@
 </ul>
 <h1 id="服务器管理"><a href="#服务器管理" class="headerlink" title="服务器管理"></a>服务器管理</h1><h2 id="用户管理"><a href="#用户管理" class="headerlink" title="用户管理"></a>用户管理</h2><p>如果需要使用，找root管理员开账号，相关常用的命令有</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">添加用户，</span></span><br><span class="line">adduser 你的用户名</span><br><span class="line"><span class="meta">#</span><span class="bash">切换用户</span></span><br><span class="line">su 需要切换的用户名</span><br></pre></td></tr></table></figure>
-<p>平时操作养成在非root权限下操作的习惯</p>
 <h2 id="磁盘管理"><a href="#磁盘管理" class="headerlink" title="磁盘管理"></a>磁盘管理</h2><p>查看磁盘空间命令如下</p>
 <figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">df -h</span></span><br></pre></td></tr></table></figure>
 <p>/ 目录挂载的是SSD，所以只有500G内存。/home/sdb，/home/sdc 分别挂载的是2块4T硬盘</p>
 <p>请选择到/home/sdb或者/home/sbc下创建自己的目录，并且在自己创建目录下存放数据，不要默认在/home/你的用户名  文件下操作，这样很快占满硬盘空间。如果需要方便，可以创建软链接，指向某个位置。</p>
 <p>综上，比如说开启新用户（sample）的流程为</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">添加用户，会需要你设置密码，密码设置好后，回车就行</span></span><br><span class="line">adduser sample</span><br><span class="line"><span class="meta">#</span><span class="bash">到4T硬盘挂载目录下创建你的目录</span></span><br><span class="line">mkdir /home/sdb/sample_space</span><br><span class="line"><span class="meta">#</span><span class="bash">创建软连接到用户目录下</span></span><br><span class="line">ln -s /home/sdb/sample_space /home/sample</span><br><span class="line"><span class="meta">#</span><span class="bash">可以方便地 在/home/sample/sample_space访问</span></span><br></pre></td></tr></table></figure>
-<h1 id="服务器连接"><a href="#服务器连接" class="headerlink" title="服务器连接"></a>服务器连接</h1><h2 id="跑去办公室"><a href="#跑去办公室" class="headerlink" title="跑去办公室"></a>跑去办公室</h2><p>打开显示屏即可操作，切换到自己用户名再进行操作</p>
-<h2 id="ssh连接"><a href="#ssh连接" class="headerlink" title="ssh连接"></a>ssh连接</h2><p>使用ssh连接，没有界面，但是会十分流畅</p>
+<h1 id="服务器连接"><a href="#服务器连接" class="headerlink" title="服务器连接"></a>服务器连接</h1><h2 id="ssh连接"><a href="#ssh连接" class="headerlink" title="ssh连接"></a>ssh连接</h2><p>使用ssh连接，没有界面，但是会十分流畅</p>
 <p>在windows上，可以使用软件进行管理连接，比如说<a href="https://www.netsarang.com/products/xsh_overview.html" target="_blank" rel="noopener">xshell</a></p>
 <p>在linux上，可以在终端之间输入：ssh 用户名@IP地址</p>
-<p>使用的都是默认端口22，如果你需要，可以自己改端口</p>
-<h2 id="vnc连接（暂时不支持）"><a href="#vnc连接（暂时不支持）" class="headerlink" title="vnc连接（暂时不支持）"></a>vnc连接（暂时不支持）</h2><p>使用vnc连接，可以使用界面</p>
+<p>在实验室网络内连接IP:192.168.1.102:22（数据传输很快）</p>
+<p>在实验室网络外连接IP:202.120.37.2:5900（数据传输较慢）</p>
+<h2 id="vnc连接"><a href="#vnc连接" class="headerlink" title="vnc连接"></a>vnc连接</h2><p>使用vnc连接，可以使用界面（推荐使用xface4桌面）</p>
 <p>服务器的<a href="https://geniuslight.github.io/2017/12/20/%E7%99%BB%E9%99%86%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%A1%8C%E9%9D%A2/">vnc安装过程</a>(读一下有助于更好使用！)</p>
 <p>widows和linux都可以下载<a href="https://www.realvnc.com/en/connect/download/viewer/" target="_blank" rel="noopener">客户端</a> 。使用十分简单，但是在网络不是很畅通的时候，会比较卡。</p>
 <p>anaconda3中有dbus-launch，会和vnc桌面发生冲突，可能导致终端无法打开，所以不要把anacoda3的path添加到环境变量中。</p>
-<h3 id="管理vnc账号和自动登陆"><a href="#管理vnc账号和自动登陆" class="headerlink" title="管理vnc账号和自动登陆"></a>管理vnc账号和自动登陆</h3><p>参看教程： <a href="https://geniuslight.github.io/2018/03/13/vncserver%E5%A4%9A%E7%94%A8%E6%88%B7%E5%90%AF%E5%8A%A8/">vncserver多用户启动</a></p>
-<h2 id="teamviewer连接"><a href="#teamviewer连接" class="headerlink" title="teamviewer连接"></a>teamviewer连接</h2><p>服务端teamviewer相关命令</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">teamviewer启动</span></span><br><span class="line">sudo teamviewer --daemon start</span><br><span class="line"><span class="meta">#</span><span class="bash">teamviewer关闭</span></span><br><span class="line">sudo teamviewer --daemon stop</span><br><span class="line"><span class="meta">#</span><span class="bash">获得连接的ID</span></span><br><span class="line">teamviewer --info print id</span><br><span class="line"><span class="meta">#</span><span class="bash">设置密码</span></span><br><span class="line"> sudo teamviewer --passwd [NEWPASSWORD]</span><br></pre></td></tr></table></figure>
-<p>在服务器端root用户开启后，在各个桌面下可以使用同样ID和密码进行连接，下载客户端即可连接。</p>
-<h2 id="在外网使用服务器"><a href="#在外网使用服务器" class="headerlink" title="在外网使用服务器"></a>在外网使用服务器</h2><p>参看教程：<a href="https://geniuslight.github.io/2018/01/30/%E8%BD%AC%E8%BD%BD-%E7%94%A8frp%E6%89%93%E5%BC%80%E4%B8%80%E6%89%87%E9%80%9A%E5%90%91%E5%86%85%E7%BD%91%E7%9A%84%E9%97%A8/">用frp打开一扇通向内网的门</a></p>
+<p>启动后，在各个桌面下可以使用同样ID和密码进行连接，下载客户端即可连接。</p>
+<p>在实验室网络内连接时，IP为：192.168.1.102</p>
+<p>在实验室网络外连接时，IP为：202.120.37.2</p>
+<h1 id="GPU使用"><a href="#GPU使用" class="headerlink" title="GPU使用"></a>GPU使用</h1><h2 id="GPU使用情况查看"><a href="#GPU使用情况查看" class="headerlink" title="GPU使用情况查看"></a>GPU使用情况查看</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">输入下面命令</span></span><br><span class="line">nvidia-smi</span><br></pre></td></tr></table></figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://s1.ax2x.com/2018/09/13/5FyL7z.md.png" alt="5FyL7z.md.png" title="">
+                </div>
+                <div class="image-caption">5FyL7z.md.png</div>
+            </figure>]<br><br>图片上方是4块GPU信息，编号为0、1、2、3<br><br>- Volatile GPU-UTIL ：表示单块GPU使用效率，数值越大说明代码写的很高效<br>- Process GPU是占用的GPU和相关进程<br><br>如果GPU 0 有人使用了5G的显存，然而你想用10G，程序会出现报错<br><br>## GPU使用指定<br><br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#比如原来执行python指令为，会使用所用的GPU</span><br><span class="line">python test.py</span><br><span class="line">#修改后，假如使用第<span class="number">2</span>、<span class="number">3</span>块GPU</span><br><span class="line">CUDA_VISIBLE_DEVICES=<span class="number">1</span>,<span class="number">2</span> python test.py</span><br><span class="line">#以上是在命令行运行时候设置，也可以再python代码中设置，在代码开头添加</span><br><span class="line">import os</span><br><span class="line">os<span class="selector-class">.environ</span>[<span class="string">'CUDA_VISIBLE_DEVICES'</span>]=<span class="string">'2，3'</span></span><br></pre></td></tr></table></figure>
 
         </div>
 
@@ -235,7 +242,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2018-06-29T08:52:16.818Z" itemprop="dateUpdated">2018-06-29 16:52:16</time>
+    最后更新时间：<time datetime="2018-09-13T11:57:56.366Z" itemprop="dateUpdated">2018-09-13 19:57:56</time>
 </span><br>
 
 
